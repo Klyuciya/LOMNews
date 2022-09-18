@@ -1,3 +1,8 @@
 /server/node_modules/
 /server/.env
 index.html
+<<<<<<< HEAD
+=======
+style.css
+home.html
+>>>>>>> main
