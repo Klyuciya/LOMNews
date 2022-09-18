@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 
+import authRoute from "./routes/auth.js";
+
 const app = express();
 dotenv.config();
 
@@ -16,6 +18,10 @@ const dbName = process.env.DB_NAME;
 app.use(cors());
 app.use(express.json());
 
+//Routes
+//http://localhost:3002
+app.use("/api/auth", authRoute);
+
 app.get("/", (req, res) => {
   return res.json({ message: "All is fine!" });
 });
@@ -23,11 +29,12 @@ app.get("/", (req, res) => {
 async function start() {
   try {
     await mongoose.connect(
-      `mongodb+srv://${dbUser}:${dbPassword}@cluster0.5rhohrz.mongodb.net/${dbName}?retryWrites=true&w=majority`
+      // `mongodb+srv://${dbUser}:${dbPassword}@cluster0.5rhohrz.mongodb.net/${dbName}?retryWrites=true&w=majority`
 
-      // `mongodb+srv://${dbUser}:${dbPassword}@cluster0.yv5epfr.mongodb.net/${dbName}?retryWrites=true&w=majority`
+      `mongodb+srv://${dbUser}:${dbPassword}@cluster0.yv5epfr.mongodb.net/${dbName}?retryWrites=true&w=majority`
       // 'mongodb+srv://oxana:OT1234@cluster0.5rhohrz.mongodb.net/blog?retryWrites=true&w=majority'
     );
+
     app.listen(port, () => {
       console.log(`Server started on port: ${port}`);
     });
