@@ -13,7 +13,7 @@ Each member writes down answers to 3 questions in the following format:
 
 
 2022/09/17 Liutsiia
-
+===================
 1.Done / not done since last scrum:
 Learn how to work with MongoDB
 2. To do until next Scrum:
@@ -44,3 +44,15 @@ Create a project and install the necessary packages
 -insert some data to user table and test the validation code
 3.Need assistance / figure things out
 -hiding user's password
+
+
+2022/09/18 Liutsiia
+===================
+1.Done / not done since last scrum:
+Create a project and install the necessary packages
+Gave public access to DB for team developers
+2. To do until next Scrum:
+Start worked with client side
+Creating a React Project
+3.Need assistance / figure things out
+Tailwind CSS

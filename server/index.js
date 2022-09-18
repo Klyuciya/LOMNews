@@ -29,10 +29,7 @@ app.get("/", (req, res) => {
 async function start() {
   try {
     await mongoose.connect(
-      // `mongodb+srv://${dbUser}:${dbPassword}@cluster0.5rhohrz.mongodb.net/${dbName}?retryWrites=true&w=majority`
-
-      `mongodb+srv://${dbUser}:${dbPassword}@cluster0.yv5epfr.mongodb.net/${dbName}?retryWrites=true&w=majority`
-      // 'mongodb+srv://oxana:OT1234@cluster0.5rhohrz.mongodb.net/blog?retryWrites=true&w=majority'
+      `mongodb+srv://${dbUser}:${dbPassword}@cluster0.5rhohrz.mongodb.net/${dbName}?retryWrites=true&w=majority`
     );
 
     app.listen(port, () => {
