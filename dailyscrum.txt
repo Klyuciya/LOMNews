@@ -33,3 +33,14 @@ Create a project and install the necessary packages
 -Create User table/model
 3.Need assistance / figure things out
 -Relationships between documents in MongoDB
+
+2022/09/17 Myrzagul
+===================
+1.Done / not done since last scrum:
+-Learnt some Git commands / how to use the GitHub Desktop
+-Learnt MongoDB (structure / Installed MongoDB Compass / commands / connection from NodeJS )
+2. To do until next Scrum:
+-learn about express validator/ apply some validation when registering a new user
+-insert some data to user table and test the validation code
+3.Need assistance / figure things out
+-hiding user's password
