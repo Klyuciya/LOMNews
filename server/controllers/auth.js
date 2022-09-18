@@ -32,11 +32,75 @@ export const register = async (req, res) => {
     //send respond to frontend
     res.json({
       newUser,
-      message: "Success registered",
+      message: "User is registered",
     });
   } catch (error) {
-    res.json({ message: "Error register user" });
+    res.json({ message: "Error while registering a user" });
   }
 };
 
-////////// Login user
+
+
+//Login user
+export const login = async (req, res)=>{
+  try{
+      const {email, password} = req.body;
+      const user = await User.findOne({email});
+      if(!user){
+          return res.json({
+              message: "Such email was not found",
+          })
+      }
+
+      const isPasswordCorrect = await bcrypt.compare(password, user.password)
+      if(!isPasswordCorrect){
+          return res.json({
+              message: "Wrong password"
+          })
+      }
+
+      const token = jwt.sign({
+          id: user._id,
+          email: user.email,
+      },
+      process.env.JWT_SECRET,
+      {expiresIn: '30d'},
+      )
+
+      res.json({
+          token, user, 
+          message: 'You are logged in',
+      })
+
+  }catch(error){
+      res.json({message: "Error while authorising a user"})
+  }
+}
+
+
+
+// Get Me
+export const getMe = async (req, res)=>{
+  try{
+const user = await User.findById(req.userId);
+
+if(!user){
+  return res.json({
+      message: "Such user doesn't exist",
+  })
+}
+const token = jwt.sign({
+  id: user._id,
+},
+process.env.JWT_SECRET,
+{expiresIn: '30d'},
+)
+
+res.json({
+  user, 
+  token, 
+})
+  }catch(error){
+      res.json({message: "No access"})
+  }
+};

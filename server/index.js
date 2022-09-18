@@ -9,7 +9,7 @@ const app = express();
 dotenv.config();
 
 // Constants
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3002;
 const dbUser = process.env.DB_USER;
 const dbPassword = process.env.DB_PASSWORD;
 const dbName = process.env.DB_NAME;
@@ -29,10 +29,9 @@ app.get("/", (req, res) => {
 async function start() {
   try {
     await mongoose.connect(
-      // `mongodb+srv://${dbUser}:${dbPassword}@cluster0.5rhohrz.mongodb.net/${dbName}?retryWrites=true&w=majority`
-
-      `mongodb+srv://${dbUser}:${dbPassword}@cluster0.yv5epfr.mongodb.net/${dbName}?retryWrites=true&w=majority`
-      // 'mongodb+srv://oxana:OT1234@cluster0.5rhohrz.mongodb.net/blog?retryWrites=true&w=majority'
+      `mongodb+srv://${dbUser}:${dbPassword}@cluster0.5rhohrz.mongodb.net/${dbName}?retryWrites=true&w=majority`
+      // 'mongodb+srv://Myrzagul:MA1234@cluster0.5rhohrz.mongodb.net/lomnews?retryWrites=true&w=majority'
+      
     );
 
     app.listen(port, () => {
