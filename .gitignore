@@ -1,5 +1,7 @@
 server/node_modules/
 server/.env
-index.html
-style.css
-home.html
+
+=======
+
+/client/node_modules
+>>>>>>> 69456c1890f4f145c72a1305e714c4341b3c34ea
