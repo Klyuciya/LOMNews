@@ -15,44 +15,59 @@ Each member writes down answers to 3 questions in the following format:
 2022/09/17 Liutsiia
 ===================
 1.Done / not done since last scrum:
-Learn how to work with MongoDB
+    Learn how to work with MongoDB
 2. To do until next Scrum:
-Create a project and install the necessary packages
+    Create a project and install the necessary packages
 3.Need assistance / figure things out
- figure out how to use one database. Give public access for team developers
- figure out how to create and use .gitignore
+    figure out how to use one database. Give public access for team developers
+    figure out how to create and use .gitignore
 
 
 2022/09/17 Oxana
 ===================
 1.Done / not done since last scrum:
--Learn Git commands / install GitHub Desktop
--Learn MongoDB (structure / Install MongoDB Compass / commands / connection from NodeJS )
+    -Learn Git commands / install GitHub Desktop
+    -Learn MongoDB (structure / Install MongoDB Compass / commands / connection from NodeJS )
 2. To do until next Scrum:
--Create/connect MongoDB
--Create User table/model
+    -Create/connect MongoDB
+    -Create User table/model
 3.Need assistance / figure things out
--Relationships between documents in MongoDB
+    -Relationships between documents in MongoDB
 
 2022/09/17 Myrzagul
 ===================
 1.Done / not done since last scrum:
--Learnt some Git commands / how to use the GitHub Desktop
--Learnt MongoDB (structure / Installed MongoDB Compass / commands / connection from NodeJS )
+    -Learnt some Git commands / how to use the GitHub Desktop
+    -Learnt MongoDB (structure / Installed MongoDB Compass / commands / connection from NodeJS )
 2. To do until next Scrum:
--learn about express validator/ apply some validation when registering a new user
--insert some data to user table and test the validation code
+    -learn about express validator/ apply some validation when registering a new user
+    -insert some data to user table and test the validation code
 3.Need assistance / figure things out
--hiding user's password
+    -hiding user's password
 
 
 2022/09/18 Liutsiia
 ===================
 1.Done / not done since last scrum:
-Create a project and install the necessary packages
-Gave public access to DB for team developers
+    Create a project and install the necessary packages
+    Gave public access to DB for team developers
 2. To do until next Scrum:
-Start worked with client side
-Creating a React Project
+    Start worked with client side
+    Creating a React Project
 3.Need assistance / figure things out
-Tailwind CSS
+    Tailwind CSS
+
+
+2022/09/18 Myrzagul
+===================
+1.Done / not done since last scrum:
+    Tested(inserted some data) public access to DB for team developers
+    Installed express-validator, applied some validation for user registration
+    Used jsonwebtoken lib to make a token to hide user's info
+    Finished the login on the server side(with a minor bug)
+2. To do until next Scrum:
+    Fix the bug in the login part
+    Finish the getMe route and the rest of the routes
+    Learn about using roles of users
+3.Need assistance / figure things out
+    Relations between tables in Db and implementing roles
