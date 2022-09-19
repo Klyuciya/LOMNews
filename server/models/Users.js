@@ -15,10 +15,12 @@ const UsersSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    role: {
-      type: String,
+    role: [{
+      type: mongoose.Schema.Types.ObjectId,
+      // type: String,
       required: true,
-    },
+      ref: 'Roles',
+    }],
     avatarURL: {
       type: String,
       required: true,
@@ -26,6 +28,7 @@ const UsersSchema = new mongoose.Schema(
     status: {
       type: String,
       required: true,
+      default: "unblock",
     },
     news: [
       {
