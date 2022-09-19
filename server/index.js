@@ -33,7 +33,6 @@ async function start() {
     await mongoose.connect(
       `mongodb+srv://${dbUser}:${dbPassword}@cluster0.5rhohrz.mongodb.net/${dbName}?retryWrites=true&w=majority`
       // 'mongodb+srv://Myrzagul:MA1234@cluster0.5rhohrz.mongodb.net/lomnews?retryWrites=true&w=majority'
-      
     );
 
     app.listen(port, () => {

@@ -15,12 +15,23 @@ const UsersSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+<<<<<<< Updated upstream
     role: [{
       // type: mongoose.Schema.Types.ObjectId,
       type: String,
       required: true,
       ref: 'Roles',
     }],
+=======
+    role: [
+      {
+        //type: mongoose.Schema.Types.ObjectId,
+        type: String,
+        required: true,
+        ref: "Roles",
+      },
+    ],
+>>>>>>> Stashed changes
     avatarURL: {
       type: String,
       required: true,

@@ -17,7 +17,9 @@ export const register = async (req, res) => {
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
-    const userRole = await Roles.findOne({role: "User"});
+    const userRole = await Roles.findOne({ role: "User" });
+    // console.log(userRole);
+    // console.log(userRole.role);
 
     const newUser = new User({
       email,
@@ -27,6 +29,8 @@ export const register = async (req, res) => {
       avatarURL,
       status,
     });
+
+    // console.log(newUser);
 
     //insert in DB
     await newUser.save();
@@ -42,19 +46,16 @@ export const register = async (req, res) => {
   }
 };
 
-
 //Login user
-export const login = async (req, res)=>{
-  try{
-      const { email, password} = req.body;
-
-      const user = await User.findOne({email});
-      if(!user){
-          return res.status(404).json({
-              message: "Such email was not found",
-              //"wrong email and password combination"
-          })
-      }
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.json({
+        message: "Such email was not found",
+      });
+    }
 
       const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password)
       if(!isPasswordCorrect){
@@ -62,54 +63,61 @@ export const login = async (req, res)=>{
               message: "Wrong password"
           })
       }
+=======
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
+      return res.json({
+        message: "Wrong password",
+      });
+    }
+>>>>>>> Stashed changes
 
-      const token = jwt.sign({
-          id: user._id,
-          email: user.email,
-          role: user.role,
+    const token = jwt.sign(
+      {
+        id: user._id,
+        email: user.email,
       },
       process.env.JWT_SECRET,
-      {expiresIn: '30d'},
-      )
+      { expiresIn: "30d" }
+    );
 
-      res.json({
-          token, 
-          user, 
-          message: 'You are logged in',
-      })
-
-  }catch(error){
-      res.status(500).json({message: "Error while authorising a user"})
-  }
-}
-
-
-
-// Get Me
-export const getMe = async (req, res)=>{
-  try{
-const user = await User.findById(req.userId);
-
-if(!user){
-  return res.json({
-      message: "Such user doesn't exist",
-  })
-}
-const token = jwt.sign({
-  id: user._id,
-},
-process.env.JWT_SECRET,
-{expiresIn: '30d'},
-)
-
-res.json({
-  user, 
-  token, 
-})
-  }catch(error){
-      res.json({message: "No access"})
+    res.json({
+      token,
+      user,
+      message: "You are logged in",
+    });
+  } catch (error) {
+    res.json({ message: "Error while authorising a user" });
   }
 };
+
+// Get Me
+export const getMe = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+
+    if (!user) {
+      return res.json({
+        message: "Such user doesn't exist",
+      });
+    }
+    const token = jwt.sign(
+      {
+        id: user._id,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "30d" }
+    );
+
+    res.json({
+      user,
+      token,
+    });
+  } catch (error) {
+    res.json({ message: "No access" });
+  }
+};
+<<<<<<< Updated upstream
 
 //Get users
 
@@ -121,5 +129,12 @@ res.json(users);
 
   }catch(error){
       console.log(error)
+=======
+export const getUsers = async (req, res) => {
+  try {
+    res.json("server work");
+  } catch (error) {
+    console.log(error);
+>>>>>>> Stashed changes
   }
 };
