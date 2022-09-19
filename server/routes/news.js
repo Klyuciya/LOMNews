@@ -6,7 +6,7 @@ const router = new Router();
 
 // Create News
 //http://localhost:3002/api/news
-router.post("/", checkAuth, createPost);
+router.post("/",  createPost);
 
 
 //Login
