@@ -57,20 +57,15 @@ export const login = async (req, res) => {
       });
     }
 
-      const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password)
-      if(!isPasswordCorrect){
-          return res.status(400).json({
-              message: "Wrong password"
-          })
-      }
-=======
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    const isPasswordCorrect = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
     if (!isPasswordCorrect) {
-      return res.json({
+      return res.status(400).json({
         message: "Wrong password",
       });
     }
->>>>>>> Stashed changes
 
     const token = jwt.sign(
       {
@@ -117,24 +112,15 @@ export const getMe = async (req, res) => {
     res.json({ message: "No access" });
   }
 };
-<<<<<<< Updated upstream
 
 //Get users
 
-export const getUsers = async (req, res)=>{
-  try{
-    const users = await User.find();
-   
-res.json(users);
-
-  }catch(error){
-      console.log(error)
-=======
 export const getUsers = async (req, res) => {
   try {
-    res.json("server work");
+    const users = await User.find();
+
+    res.json(users);
   } catch (error) {
     console.log(error);
->>>>>>> Stashed changes
   }
 };
