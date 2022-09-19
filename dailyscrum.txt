@@ -71,3 +71,16 @@ Each member writes down answers to 3 questions in the following format:
     Learn about using roles of users
 3.Need assistance / figure things out
     Relations between tables in Db and implementing roles
+
+
+2022/09/18 Oxana
+===================
+1.Done / not done since last scrum:
+    -Created/connected MongoDB schema
+    -Created User table/model
+    -Created User rgistration route on the server
+2. To do until next Scrum:
+    -Learn about Tailwind CSS
+    -Create registration page layout (frontend part))
+3.Need assistance / figure things out
+    -Tailwind CSS
