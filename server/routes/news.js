@@ -1,12 +1,14 @@
 import { Router } from "express";
-import { createPost } from "../controllers/news.js";
+import { createNews } from "../controllers/news.js";
 import { checkAuth } from "../utils/checkAuth.js";
+import { newsValidation, newsValidationResult} from "../validators/newsValidation.js";
+
 
 const router = new Router();
 
 // Create News
 //http://localhost:3002/api/news
-router.post("/",  createPost);
+router.post("/", checkAuth, newsValidation, newsValidationResult, createNews);
 
 
 //Login

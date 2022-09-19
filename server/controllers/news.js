@@ -3,11 +3,10 @@ import User from "../models/Users.js"
 import path, {dirname} from 'path'
 import { fileURLToPath } from "url"
 //Create News
-export const createPost = async (req, res) => {
+export const createNews = async (req, res) => {
     try {
         const {title, newsText} = req.body
-        const author = await User.findById(req.userId)
-
+        // const author = await User.findById(req.userId)
         if(req.files) {
             let fileName = Date.now().toString() + req.files.image.name
             const __dirname = dirname(fileURLToPath(import.meta.url ))
@@ -16,7 +15,8 @@ export const createPost = async (req, res) => {
                 title,
                 newsText,
                 image: fileName,
-                author: req.userID,
+                tags:req.body.tags,
+                author: req.userId,
             })
             await newNewsWithImage.save()
             await User.findByIdAndUpdate(req.userId, {
@@ -30,7 +30,7 @@ export const createPost = async (req, res) => {
             title,
             newsText,
             image: "",
-            author: req.userID,
+            author: req.userId,
         })
         await newNewsWithoutImage.save()
         await User.findByIdAndUpdate(req.userId, {
