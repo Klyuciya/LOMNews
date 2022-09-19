@@ -32,10 +32,11 @@ export const register = async (req, res) => {
     await newUser.save();
 
     //send respond to frontend
-    res.json({
+    return res.json({
       newUser,
       message: "User is registered",
     });
+    // res.json({message: "OK"})
   } catch (error) {
     res.status(400).json({ message: "User registration error" });
   }
