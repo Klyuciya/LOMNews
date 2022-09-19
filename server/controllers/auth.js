@@ -1,6 +1,6 @@
 import User from "../models/Users.js";
 import bcrypt from "bcryptjs";
-
+import jwt from "jsonwebtoken";
 //register user
 export const register = async (req, res) => {
   try {
@@ -44,24 +44,24 @@ export const register = async (req, res) => {
 //Login user
 export const login = async (req, res)=>{
   try{
-      const {email, password} = req.body;
-      const user = await User.findOne({email});
+      // const {email, password} = req.body;
+      const user = await User.findOne({email: req.body.email});
       if(!user){
-          return res.json({
-              message: "Such email was not found",
+          return res.status(404).json({
+              message: "Such email was not found", //change "User is not found"
           })
       }
 
-      const isPasswordCorrect = await bcrypt.compare(password, user.password)
+      const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password)
       if(!isPasswordCorrect){
-          return res.json({
+          return res.status(400).json({
               message: "Wrong password"
           })
       }
 
       const token = jwt.sign({
-          id: user._id,
-          email: user.email,
+          _id: user._id,
+          email: user.email
       },
       process.env.JWT_SECRET,
       {expiresIn: '30d'},
