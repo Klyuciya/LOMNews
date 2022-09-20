@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createNews, getAllNews, getNewsById } from "../controllers/news.js";
+import { createNews, getAllNews, getNewsById, getMyNews, deleteMyNews, editMyNews } from "../controllers/news.js";
 import { checkAuth } from "../utils/checkAuth.js";
 import { newsValidation, newsValidationResult} from "../validators/newsValidation.js";
 import { roleMiddleware} from "../utils/roleMiddleware.js";
@@ -10,7 +10,7 @@ const router = new Router();
 
 // Create News
 //http://localhost:3002/api/news
-router.post("/", roleMiddleware(['Admin']), newsValidation, newsValidationResult, createNews);
+router.post("/", checkAuth, roleMiddleware(['Editor']), newsValidation, newsValidationResult, createNews);
 
 
 // Get All News
@@ -23,5 +23,14 @@ router.get('/:id', getNewsById);
 
 //Get News By Users Id
 //http://localhost:3002/api/news/user/my
-// router.get('/user/my', roleMiddleware(['Admin']), getMyNews);
+router.get('/user/my', checkAuth, getMyNews);
+
+//Delete News By Users Id and News Id
+//http://localhost:3002/api/news/user/my/delete/:id
+router.delete('/user/my/delete/:id', checkAuth, deleteMyNews);
+
+//Edit News By Users Id and News Id
+//http://localhost:3002/api/news/user/my/edit/:id
+router.put('/user/my/edit/:id', checkAuth, editMyNews);
 export default router;
+

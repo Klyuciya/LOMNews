@@ -12,8 +12,6 @@ export function roleMiddleware(roles){
 
         try {
             const token = req.headers.authorization.split(' ')[1]
-            console.log(token) 
-
             if (!token) {
                 return res.status(403).json({message: "Cant define the token"})
             }
@@ -21,15 +19,6 @@ export function roleMiddleware(roles){
             const userRoles = jwt.verify(token, process.env.JWT_SECRET)
 
             let hasRole = false
-
-            console.log(roles)
-
-            // console.log(userRoles)
-
-            console.log(userRoles.role)
-
-            // const i=0;
-
                 for (let i=0; i<roles.length ;i++ ){
 
                 if (roles[i]===userRoles.role[0]){

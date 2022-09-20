@@ -4,9 +4,11 @@ import path, {dirname} from 'path'
 import { fileURLToPath } from "url"
 // Create News
 export const createNews = async (req, res) => {
+    // console.log(req.usersId)
     try {
         const {title, newsText} = req.body
-        // const author = await User.findById(req.userId)
+        const author = await User.findById(req.userId)
+        console.log(req.userId)
         if(req.files) {
             let fileName = Date.now().toString() + req.files.image.name
             const __dirname = dirname(fileURLToPath(import.meta.url ))
@@ -30,7 +32,6 @@ export const createNews = async (req, res) => {
             title,
             newsText,
             image: "",
-            tags:req.body.tags,
             author: req.userId,
         })
         await newNewsWithoutImage.save()
@@ -81,12 +82,65 @@ export const getNewsById = async (req, res) => {
                 return res.status(404).json({ 
                     message: 'News not found'
                 });
-            }
-            res.json(doc);
-        },);
+        }
+    res.json(doc);
+},);
     } catch (err) {
         console.log(err);
         res.status(500).json({ 
             message: 'Failed to retrieve news'});
+    }
+}
+
+// Get News By Users Id
+export const getMyNews = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId)
+        const list = await Promise.all(
+            user.news.map( (news) => {
+                return News.findById(news._id)
+            })
+        )
+        res.json (list)
+    } catch (error) {
+        res.json({message: "Something going wrong"})
+    }
+}
+
+//Delete News By Users Id and News Id
+export const deleteMyNews = async (req, res) => {
+    try {
+        const news = await News.findByIdAndDelete(req.params.id)
+        if (!news) return res.json({ message: 'This news does not exist' })
+
+        await User.findByIdAndUpdate(req.userId, {
+            $pull: { news: req.params.id },
+        })
+
+        res.json({ message: 'The news has been removed.' })
+    } catch (error) {
+        res.json({ message: 'Something went wrong.' })
+    }
+}
+
+//Edit News By Users Id and News Id
+export const editMyNews = async (req, res) => {
+    try {
+        const { title, newsText, id } = req.body
+        const news = await News.findById(req.params.id)
+        if (req.files) {
+            let fileName = Date.now().toString() + req.files.image.name
+            const __dirname = dirname(fileURLToPath(import.meta.url))
+            req.files.image.mv(path.join(__dirname, '..', 'uploads', fileName))
+            news.imgUrl = fileName || ''
+        }
+        news.title = title
+        news.newsText = newsText
+
+        await news.save()
+
+        res.json(news)
+    } catch (error) {
+        res.json({ message: 'Something went wrong.' })
     }
 }
