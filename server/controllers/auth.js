@@ -18,8 +18,7 @@ export const register = async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
     const userRole = await Roles.findOne({ role: "User" });
-    // console.log(userRole);
-    // console.log(userRole.role);
+  
 
     const newUser = new User({
       email,
@@ -30,7 +29,16 @@ export const register = async (req, res) => {
       status,
     });
 
-    // console.log(newUser);
+    const token = jwt.sign(
+      {
+        id: newUser._id,
+        email: newUser.email,
+        role: newUser.role,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "30d" }
+    );
+
 
     //insert in DB
     await newUser.save();
@@ -38,6 +46,7 @@ export const register = async (req, res) => {
     //send respond to frontend
     return res.json({
       newUser,
+      token,
       message: "User is registered",
     });
     // res.json({message: "OK"})
