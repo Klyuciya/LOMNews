@@ -84,3 +84,16 @@ Each member writes down answers to 3 questions in the following format:
     -Create registration page layout (frontend part))
 3.Need assistance / figure things out
     -Tailwind CSS
+
+
+2022/09/19 Myrzagul
+===================
+1.Done / not done since last scrum:
+    added a route getUsers(only for admins) to the routes
+    Learnt a bit about using roles of users and wrote a code for the admin to get all users
+    Fixed the bug in the login on the server side
+2. To do until next Scrum:
+    Add jwt to registration
+    Work on the frontend i.e. forms for the news and index page 
+3.Need assistance / figure things out
+    how to work with Redux and learn more about it
