@@ -111,3 +111,19 @@ Each member writes down answers to 3 questions in the following format:
     
 3.Need assistance / figure things out
     Roles for users
+
+
+
+2022/09/19 Oxana
+===================
+1.Done / not done since last scrum:
+    -created frontend/ routing
+    -created frontend user registration 
+2. To do until next Scrum:
+    -Continue Frontend/connecting bootstrap 
+    -Create login page layout (frontend part))
+	-switch to bootstrap
+3.Need assistance / figure things out
+    -using Redux 
+
+    
