@@ -1,22 +1,27 @@
 import { Router } from "express";
-import { createNews } from "../controllers/news.js";
+import { createNews, getAllNews, getNewsById } from "../controllers/news.js";
 import { checkAuth } from "../utils/checkAuth.js";
 import { newsValidation, newsValidationResult} from "../validators/newsValidation.js";
+import { roleMiddleware} from "../utils/roleMiddleware.js";
+
 
 
 const router = new Router();
 
 // Create News
 //http://localhost:3002/api/news
-router.post("/", checkAuth, newsValidation, newsValidationResult, createNews);
+router.post("/", roleMiddleware(['Admin']), newsValidation, newsValidationResult, createNews);
 
 
-//Login
-//http://localhost:3002/api/auth/login
-// router.post('/login', login);
+// Get All News
+//http://localhost:3002/api/news
+router.get('/', getAllNews);
 
-//Get me
-//http://localhost:3002/api/auth/me
-// router.get('/me', checkAuth, getMe);
+//Get News By Id
+//http://localhost:3002/api/news/:id
+router.get('/:id', getNewsById);
 
+//Get News By Users Id
+//http://localhost:3002/api/news/user/my
+// router.get('/user/my', roleMiddleware(['Admin']), getMyNews);
 export default router;

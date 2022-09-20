@@ -2,7 +2,7 @@ import News from "../models/News.js"
 import User from "../models/Users.js"
 import path, {dirname} from 'path'
 import { fileURLToPath } from "url"
-//Create News
+// Create News
 export const createNews = async (req, res) => {
     try {
         const {title, newsText} = req.body
@@ -30,6 +30,7 @@ export const createNews = async (req, res) => {
             title,
             newsText,
             image: "",
+            tags:req.body.tags,
             author: req.userId,
         })
         await newNewsWithoutImage.save()
@@ -41,5 +42,51 @@ export const createNews = async (req, res) => {
        res.json({
            message: "Something going wrong"
        })
+    }
+}
+
+// Get All News
+export const getAllNews = async (req, res) => {
+    try {
+        const news = await News.find().sort('-createdAt')
+        const popularsNews = await News.find().limit(5).sort('-viewsQty')
+        if (!news) {
+            return res.json({message: 'No News'})
+        }
+        res.json ({news, popularsNews})
+    } catch (error) {
+        res.json({message: "Something going wrong"})
+    }
+}
+
+// Get News By Id
+export const getNewsById = async (req, res) => {
+    try {
+        const newsId = req.params.id;
+        News.findOneAndUpdate ({
+            _id: newsId,
+        }, {
+            $inc: { viewsQty: 1},
+        }, {
+            returnDocument: 'after',
+        },
+        (err, doc) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({ 
+                    message: 'Unable to return news'
+                });
+            }
+            if (!doc) {
+                return res.status(404).json({ 
+                    message: 'News not found'
+                });
+            }
+            res.json(doc);
+        },);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ 
+            message: 'Failed to retrieve news'});
     }
 }

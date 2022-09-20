@@ -16,6 +16,10 @@ export const newsValidation = [
     .isURL()
     .withMessage('Invalid URL'),
 
+    check('author')
+    .notEmpty
+    .withMessage('Author is required'),
+
 ];
 
 export const newsValidationResult = (req, res, next)=>{
