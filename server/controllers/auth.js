@@ -18,8 +18,7 @@ export const register = async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
     const userRole = await Roles.findOne({ role: "User" });
-    // console.log(userRole);
-    // console.log(userRole.role);
+  
 
     const newUser = new User({
       email,
@@ -30,7 +29,7 @@ export const register = async (req, res) => {
       status,
     });
 
-    // console.log(newUser);
+   
 
     //insert in DB
     await newUser.save();
