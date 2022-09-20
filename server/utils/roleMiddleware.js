@@ -7,23 +7,33 @@ export function roleMiddleware(roles){
             next();
         }
 
-        const token = (req.headers.authorization || '').replace(/Bearer\s?/, '');
-            // const token = req.headers.authorization.split(' ')[1]
+        // const token = (req.headers.authorization || '').replace(/Bearer\s?/, '');
+           
 
         try {
-            
+            const token = req.headers.authorization.split(' ')[1]
+            console.log(token) 
+
             if (!token) {
                 return res.status(403).json({message: "net tokena"})
             }
-            const {roles:userRoles} = jwt.verify(token, process.env.JWT_SECRET)
+            const userRoles = jwt.verify(token, process.env.JWT_SECRET)
             let hasRole = false
             console.log(roles)
-
-            userRoles.forEach(role => {
-                if (roles.includes(role)) {
+            // console.log(userRoles)
+            console.log(userRoles.role)
+            const i=0;
+            // roles.forEach(() => {
+                for (let i=0; i<roles.length ;i++ )
+                if (roles[i]===userRoles.role[0])
+                // if (roles.includes(userRoles.role))
+                {
                     hasRole = true;
+                    // i++;
+                   
                 }
-            })
+                console.log(hasRole)
+            // })
             if (!hasRole) {
                 return res.status(403).json({message: "У вас нет доступа"})
             }

@@ -84,3 +84,18 @@ Each member writes down answers to 3 questions in the following format:
     -Create registration page layout (frontend part))
 3.Need assistance / figure things out
     -Tailwind CSS
+
+2022/09/19 Liutsiia
+===================
+1.Done / not done since last scrum:
+    CStart worked with client side
+    Creating a React Project
+    Create a news
+    Tested registration and Login
+2. To do until next Scrum:
+    Getting a news by ID
+    Getting all news
+    Deleting a news
+    
+3.Need assistance / figure things out
+    Roles for users
