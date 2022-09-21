@@ -21,7 +21,7 @@ export const Home = () => {
 
   if (!news.length) {
       return (
-          <div className='text-xl text-center text-white py-10'>
+          <div className='text-xl text-center py-10'>
               No news yet.
           </div>
       )
@@ -36,7 +36,7 @@ export const Home = () => {
                    ))}
               </div>
               <div className='basis-1/5'>
-                  <div className='text-xs uppercase text-white'>
+                  <div className='text-xs uppercase'>
                       Popular:
                   </div>
 

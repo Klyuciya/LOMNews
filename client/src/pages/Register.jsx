@@ -5,7 +5,7 @@ import { registerUser, checkIsAuth } from "../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 
 import Button from "react-bootstrap/Button";
-import { Container, Form } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 export const Register = () => {
   const [name, setName] = useState("");
