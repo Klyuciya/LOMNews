@@ -23,8 +23,6 @@ export function roleMiddleware(roles){
 
                 if (roles[i]===userRoles.role[0]){
                     hasRole = true;}
-
-                console.log(hasRole)
             }
 
             if(!hasRole) {

@@ -97,6 +97,8 @@ Each member writes down answers to 3 questions in the following format:
     Work on the frontend i.e. forms for the news and index page 
 3.Need assistance / figure things out
     how to work with Redux and learn more about it
+
+
 2022/09/19 Liutsiia
 ===================
 1.Done / not done since last scrum:
@@ -126,4 +128,18 @@ Each member writes down answers to 3 questions in the following format:
 3.Need assistance / figure things out
     -using Redux 
 
+ 2022/09/20 Liutsiia
+===================
+1.Done / not done since last scrum:
+    Getting all news{backend}
+    Getting a news by ID{backend}
+    Deleting a news{backend}
+    News editing{backend}
+    Getting user's news{backend}
+2. To do until next Scrum:
+    Create a comment on a news{backend}
+    Get all comments on a news{backend}
+    Start working in frontend
     
+3.Need assistance / figure things out
+    React, Redux 
