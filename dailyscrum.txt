@@ -143,3 +143,18 @@ Each member writes down answers to 3 questions in the following format:
     
 3.Need assistance / figure things out
     React, Redux 
+
+
+
+2022/09/20 Oxana
+===================
+1.Done / not done since last scrum:
+    -Created login page layout (frontend)
+    -didn't finish forms validation login/signup
+    -user registration/login switcing between login/logout state
+2. To do until next Scrum:
+    -continue creating form validation
+    -Continue Frontend/ css 
+3.Need assistance / figure things out
+    -using Redux 
+
