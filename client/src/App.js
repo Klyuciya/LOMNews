@@ -7,7 +7,19 @@ import { Register } from "./pages/Register.jsx";
 import { Login } from "./pages/Login.jsx";
 import { EditNews } from "./pages/EditNews.jsx";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getMe } from "./redux/features/auth/authSlice.js";
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
   return (
     <Layout>
       <Routes>
@@ -18,6 +30,7 @@ function App() {
         <Route path="register" element={<Register />}></Route>
         <Route path="login" element={<Login />}></Route>
       </Routes>
+      <ToastContainer position="top-center" />
     </Layout>
   );
 }

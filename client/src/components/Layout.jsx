@@ -1,11 +1,11 @@
 import React from "react";
-import { Navbar } from "./Navbar";
+import { Navigbar } from "./Navigbar";
 
 export const Layout = ({ children }) => {
   return (
     <React.Fragment>
       <div className="container mx-auto">
-        <Navbar />
+        <Navigbar />
         {children}
       </div>
     </React.Fragment>

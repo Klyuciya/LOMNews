@@ -1,7 +1,5 @@
-
-  body {
-    font-family: "Poppins", sans-serif;
-    background: #eeeee4; /* fallback for old browsers */
-    min-height: 100vh;
-  }
-
+body {
+  font-family: "Poppins", sans-serif;
+  background: white; /* fallback for old browsers */
+  min-height: 100vh;
+}
