@@ -128,7 +128,6 @@ export const getMe = async (req, res) => {
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find();
-
     res.json(users);
   } catch (error) {
     console.log(error);

@@ -5,6 +5,7 @@ import cors from "cors";
 
 import authRoute from "./routes/auth.js";
 import newsRoute from "./routes/news.js"
+import commentsRoute from "./routes/comment.js"
 
 const app = express();
 dotenv.config();
@@ -23,6 +24,8 @@ app.use(express.json());
 //http://localhost:3002
 app.use("/api/auth", authRoute);
 app.use("/api/news", newsRoute);
+app.use("/api/comments", commentsRoute);
+
 
 app.get("/", (req, res) => {
   return res.json({ message: "All is fine!" });

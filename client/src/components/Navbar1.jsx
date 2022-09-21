@@ -6,7 +6,7 @@ export const Navbar = () => {
 
   //highlight active link
   const activeStyles = {
-    color: "white",
+    color: "blue",
   };
 
   return (
