@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import fileUpload from 'express-fileupload';
 
 import authRoute from "./routes/auth.js";
 import newsRoute from "./routes/news.js"
@@ -19,6 +20,8 @@ const dbName = process.env.DB_NAME;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(fileUpload());
+app.use(express.static('uploads'));
 
 //Routes
 //http://localhost:3002

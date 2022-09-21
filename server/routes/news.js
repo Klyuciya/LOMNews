@@ -1,8 +1,13 @@
 import { Router } from "express";
+<<<<<<< Updated upstream
 import { createNews, getAllNews, getNewsById, getMyNews, deleteMyNews, editMyNews,getNewsComments } from "../controllers/news.js";
 import { checkAuth } from "../utils/checkAuth.js";
+=======
+import { createNews, getAllNews, getNewsById } from "../controllers/news.js";
+// import { checkAuth } from "../utils/checkAuth.js";
+>>>>>>> Stashed changes
 import { newsValidation, newsValidationResult} from "../validators/newsValidation.js";
-import { roleMiddleware} from "../utils/roleMiddleware.js";
+// import { roleMiddleware} from "../utils/roleMiddleware.js";
 
 
 
@@ -10,7 +15,12 @@ const router = new Router();
 
 // Create News
 //http://localhost:3002/api/news
+<<<<<<< Updated upstream
 router.post("/", checkAuth, roleMiddleware(['Editor']), newsValidation, newsValidationResult, createNews);
+=======
+router.post("/", newsValidation, newsValidationResult, createNews);
+
+>>>>>>> Stashed changes
 
 
 // Get All News
