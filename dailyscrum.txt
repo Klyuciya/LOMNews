@@ -126,4 +126,13 @@ Each member writes down answers to 3 questions in the following format:
 3.Need assistance / figure things out
     -using Redux 
 
-    
+
+2022/09/20 Myrzagul
+===================
+1.Done / not done since last scrum:
+   Started working on the frontend, i.e. homepage, and addnews
+   Learning how to work with Redux
+2. To do until next Scrum:
+    Fix the problem on the homepage and finish up the addnews form with validations and images
+3.Need assistance / figure things out
+    Figure out how to fix the problem with Redux on the homepage    
