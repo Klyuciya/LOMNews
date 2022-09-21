@@ -15,14 +15,11 @@ export const newsValidation = [
     .optional()
     .isURL()
     .withMessage('Invalid URL'),
-<<<<<<< Updated upstream
-=======
 
     // check('author')
     // .notEmpty()
     // .withMessage('Author is required'),
 
->>>>>>> Stashed changes
 ];
 
 export const newsValidationResult = (req, res, next)=>{

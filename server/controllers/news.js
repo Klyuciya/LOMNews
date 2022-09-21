@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import News from "../models/News.js";
 import User from "../models/Users.js";
 import Comment from "../models/Comments.js";
@@ -26,36 +25,6 @@ export const createNews = async (req, res) => {
       await User.findByIdAndUpdate(req.userId, {
         $push: { news: newNewsWithImage },
       });
-=======
-import News from "../models/News.js"
-import User from "../models/Users.js"
-import path, {dirname} from 'path'
-import { fileURLToPath } from "url"
-
-
-
-// Create News
-export const createNews = async (req, res) => {
-    try {
-        const {title, newsText} = req.body
-        // const author = await User.findById(req.userId)
-        if(req.files) {
-            let fileName = Date.now().toString() + req.files.image.name
-            const __dirname = dirname(fileURLToPath(import.meta.url ))
-            req.files.image.mv(path.join(__dirname, '..', 'uploads', fileName))
-           
-            const newNewsWithImage = new News ({
-                title,
-                newsText,
-                image: fileName,
-                tags:req.body.tags,
-                author: req.userId,
-            })
-            await newNewsWithImage.save()
-            await User.findByIdAndUpdate(req.userId, {
-                $push: {news:newNewsWithImage},
-            })
->>>>>>> Stashed changes
 
       return res.json(newNewsWithImage);
     }
