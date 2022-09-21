@@ -1,5 +1,6 @@
 import News from "../models/News.js"
 import User from "../models/Users.js"
+import Comment from "../models/Comments.js"
 import path, {dirname} from 'path'
 import { fileURLToPath } from "url"
 // Create News
@@ -18,7 +19,7 @@ export const createNews = async (req, res) => {
                 newsText,
                 image: fileName,
                 tags:req.body.tags,
-                author: req.userId,
+                author: req.userId
             })
             await newNewsWithImage.save()
             await User.findByIdAndUpdate(req.userId, {
@@ -63,32 +64,12 @@ export const getAllNews = async (req, res) => {
 // Get News By Id
 export const getNewsById = async (req, res) => {
     try {
-        const newsId = req.params.id;
-        News.findOneAndUpdate ({
-            _id: newsId,
-        }, {
-            $inc: { viewsQty: 1},
-        }, {
-            returnDocument: 'after',
-        },
-        (err, doc) => {
-            if (err) {
-                console.log(err);
-                return res.status(500).json({ 
-                    message: 'Unable to return news'
-                });
-            }
-            if (!doc) {
-                return res.status(404).json({ 
-                    message: 'News not found'
-                });
-        }
-    res.json(doc);
-},);
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ 
-            message: 'Failed to retrieve news'});
+        const news = await News.findByIdAndUpdate(req.params.id, {
+            $inc: { viewsQty: 1 },
+        })
+        res.json(news)
+    } catch (error) {
+        res.json({ message: 'Failed to retrieve news' })
     }
 }
 
@@ -96,6 +77,7 @@ export const getNewsById = async (req, res) => {
 export const getMyNews = async (req, res) => {
     try {
         const user = await User.findById(req.userId)
+        // console.log(user.news())
         const list = await Promise.all(
             user.news.map( (news) => {
                 return News.findById(news._id)
@@ -140,6 +122,21 @@ export const editMyNews = async (req, res) => {
         await news.save()
 
         res.json(news)
+    } catch (error) {
+        res.json({ message: 'Something went wrong.' })
+    }
+}
+
+// Get News Comments
+export  const getNewsComments = async (req, res) => {
+    try {
+        const news = await News.findById(req.params.id)
+        const list = await Promise.all (
+            news.comments.map((comments) => {
+                return Comment.findById(comments._id)
+            })
+        )
+        res.json(list)
     } catch (error) {
         res.json({ message: 'Something went wrong.' })
     }
