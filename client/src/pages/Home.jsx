@@ -13,7 +13,7 @@ export const Home = () => {
 
   // console.log(state.news)
   console.log(news)
-  console.log(popularNews)
+//   console.log(popularNews)S
 
   useEffect(() => {
       dispatch(getAllNews())

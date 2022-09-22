@@ -169,3 +169,16 @@ Each member writes down answers to 3 questions in the following format:
 3.Need assistance / figure things out
     -using Redux 
 
+ 2022/09/21 Liutsiia
+===================
+1.Done / not done since last scrum:
+    Create a comment on a news{backend}
+    Get all comments on a news{backend}
+    Show one news without comment {frontend}
+2. To do until next Scrum:
+    show all commment in news
+    add comment
+3.Need assistance / figure things out
+    Cut time in Date
+    find name in user id
+    Role in frontend
