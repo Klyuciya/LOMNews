@@ -35,7 +35,7 @@ router.delete('/user/my/delete/:id', checkAuth, deleteMyNews);
 //http://localhost:3002/api/news/user/my/edit/:id
 router.put('/user/my/edit/:id', checkAuth, editMyNews);
 
-//Get Post Comments
+//Get News Comments
 //http://localhost:3002/api/news/comments/:id
 router.get('/comments/:id', getNewsComments);
 
