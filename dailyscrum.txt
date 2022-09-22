@@ -169,3 +169,15 @@ Each member writes down answers to 3 questions in the following format:
 3.Need assistance / figure things out
     -using Redux 
 
+
+2022/09/21 Myrzagul
+===================
+1.Done / not done since last scrum:
+   Fixed the problem on the homepage, and addnews
+   Still learning how to work with Redux
+2. To do until next Scrum:
+    Apply bootstrap on the addnews form with validations, homepage, 
+    Learn how to work with S3 bucket for images
+    Try applying roles on the frontend
+3.Need assistance / figure things out
+   Figure out how to work with S3 bucket
