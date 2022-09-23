@@ -3,11 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useCallback } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
-import { AiFillEye, AiOutlineMessage } from 'react-icons/ai'
-import Moment from 'react-moment'
 import axios from "../utils/axios.js";
-import { Link, useNavigate, useParams} from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { useLocation} from "react-router"
 
 export const NewsRead = () => {
