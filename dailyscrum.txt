@@ -182,3 +182,27 @@ Each member writes down answers to 3 questions in the following format:
     Cut time in Date
     find name in user id
     Role in frontend
+    
+    
+2022/09/21 Myrzagul
+===================
+1.Done / not done since last scrum:
+   Fixed the problem on the homepage, and addnews
+   Still learning how to work with Redux
+2. To do until next Scrum:
+    Apply bootstrap on the addnews form with validations, homepage, 
+    Learn how to work with S3 bucket for images
+    Try applying roles on the frontend
+3.Need assistance / figure things out
+   Figure out how to work with S3 bucket
+
+2022/09/21 Oxana
+====================
+1.Done / not done since last scrum:
+    -didn't finish forms validation login/signup
+2. To do until next Scrum:
+    -continue creating form validation
+    -handling server errors
+3.Need assistance / figure things out
+     -how to use formik
+     
