@@ -12,21 +12,21 @@ export const NewsItem = ({ news }) => {
         )
     }
     return (
-        <Link to={`/${news._id}`}>
+        <Link to={`news/${news._id}`}>
             <div className='flex flex-col basis-1/4 flex-grow'>
                 <div
                     className={
-                        news.imgUrl ? 'flex rouded-sm h-80' : 'flex rounded-sm'
+                        news.image? 'flex rouded-sm h-80' : 'flex rounded-sm'
                     }
                 >
-                    {news.imgUrl && (
+                    {news.image && (
                         <img
-                            src={`http://localhost:3002/${news.imgUrl}`}
+                            src={`http://localhost:3002/${news.image}`}
                             alt='img'
-                            className='object-cover w-full'
                         />
                     )}
                 </div>
+                
                 <div className='flex justify-between items-center pt-2'>
                     <div className='text-xs  opacity-50'>
                         {news.author}
