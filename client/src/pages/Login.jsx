@@ -5,13 +5,21 @@ import { loginUser, checkIsAuth } from "../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as yup from "yup";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { status } = useSelector((state) => state.auth); //for toastify modal window
-  //console.log("status: " + status);
+  // const { user } = useSelector((state) => state.auth);
+  // const { token } = useSelector((state) => state.auth);
+  // console.log("userinfo.role " + user + status);
+
+  console.log("Login.jsx status: " + status);
   const isAuth = useSelector(checkIsAuth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,6 +27,12 @@ export const Login = () => {
   useEffect(() => {
     if (status) toast(status);
     if (isAuth) navigate("/");
+    //   if (user)
+    // (
+    //   // console.log(user.email);
+    // )
+    // toast(JSON.stringify(user.role));
+    // if (token) toast(token);
   }, [status, isAuth, navigate]);
 
   const handleSubmit = () => {
@@ -29,50 +43,71 @@ export const Login = () => {
     }
   };
 
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const validationSchema = yup.object().shape({
+    email: yup.string().min(3, "email min").required(),
+    password: yup.string().min(4).max(20).required(),
+  });
+
   return (
-    <Container
-      className="d-flex justify-content-center align-items-center"
-      style={{ height: window.innerHeight - 54 }}
-    >
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        className="w-1/4 h-60 mx-auto mt-40"
+    <Container className="d-flex  ">
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        //  onSubmit={(e) => e.preventDefault()}
+        validationSchema={validationSchema}
       >
-        <h1 className="text-lg  font-bold text-black text-center py-2">
-          Login
-        </h1>
-        <label className="text-xs  text-400 font-semibold ">
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            className="mt-1 text-black w-full rounded-md bg-gray-400 border py-1 px-2 text-xs outline-none placeholder:text-gray-700"
-          />
-        </label>
-        <label className="text-xs text-400 font-semibold px-4">
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            className="mt-1 text-black w-full rounded-md bg-gray-400 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 "
-          />
-        </label>
-        <div className="flex gap-8 justify-center mt-4">
-          <Button type="submit" onClick={handleSubmit} className=" py-2 px-4">
+        <Form
+          // onSubmit={(e) => e.preventDefault()}
+          className="mx-auto"
+        >
+          <h1 className="text-lg  font-bold text-black text-center py-2">
             Login
-          </Button>
-          <Link
-            to="/register"
-            className="flex justify-center items-center text-xs text-black font-bold px-4 "
-          >
-            New to LOMNews? Sign Up
-          </Link>
-        </div>
-      </form>
+          </h1>
+          <Row className="mb-6 py-2">
+            <label className="">Email:</label>
+            <ErrorMessage name="email" component="span" />
+            <Field
+              type="text"
+              value={email}
+              // onChange={Formik.handleChange}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="mt-1  border py-2 px-2 "
+              name="email"
+            />
+          </Row>
+          <Row className="mb-6 py-2">
+            <label className="">Password:</label>
+            <ErrorMessage name="password" component="span" />
+            <Field
+              type="password"
+              value={password}
+              // onChange={Formik.handleChange}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              className="mt-1 border py-2 px-2"
+              name="password"
+            />
+          </Row>
+
+          <div className="flex gap-8 justify-center mt-4">
+            <Button type="submit" onClick={handleSubmit} className=" py-2 px-4">
+              Login
+            </Button>
+            <Link
+              to="/register"
+              className="flex justify-center items-center  px-4 "
+            >
+              New to LOMNews? Sign Up
+            </Link>
+          </div>
+        </Form>
+      </Formik>
     </Container>
   );
 };

@@ -18,7 +18,6 @@ export const register = async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
     const userRole = await Roles.findOne({ role: "User" });
-  
 
     const newUser = new User({
       email,
@@ -38,7 +37,6 @@ export const register = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "30d" }
     );
-
 
     //insert in DB
     await newUser.save();
