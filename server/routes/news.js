@@ -10,11 +10,11 @@ const router = new Router();
 
 // Create News
 //http://localhost:3002/api/news
-router.post("/", checkAuth,  newsValidation, newsValidationResult, createNews);
-// router.post("/", newsValidation,roleMiddleware(['Editor']) newsValidationResult, createNews);
+// router.post("/", checkAuth,  newsValidation, newsValidationResult, createNews);
+router.post("/",checkAuth, roleMiddleware(['Editor']), newsValidation, newsValidationResult, createNews);
 
 
-
+// roleMiddleware(['Editor']),
 // Get All News
 //http://localhost:3002/api/news
 router.get('/', getAllNews);
