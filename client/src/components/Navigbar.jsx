@@ -10,7 +10,7 @@ import Button from "react-bootstrap/Button";
 
 export const Navigbar = () => {
   const isAuth = useSelector(checkIsAuth);
-  //const isAuth = false;
+
   const dispatch = useDispatch();
 
   console.log("isAuth  " + isAuth);

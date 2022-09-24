@@ -24,7 +24,7 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path=":id" element={<NewsRead />}></Route>
+        <Route path="news/:id" element={<NewsRead />}></Route>
         <Route path=":id/edit" element={<EditNews />}></Route>
         <Route path="new" element={<AddNews />}></Route>
         <Route path="register" element={<Register />}></Route>

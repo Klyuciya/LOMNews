@@ -13,8 +13,8 @@ export const newsValidation = [
 
     check('image')
     .optional()
-    .isURL()
-    .withMessage('Invalid URL'),
+    // .isURL()
+    // .withMessage('Invalid URL'),
 
     // check('author')
     // .notEmpty()

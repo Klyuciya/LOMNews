@@ -8,13 +8,14 @@ export const createNews = async (req, res) => {
   // console.log(req.usersId)
   try {
     const { title, newsText } = req.body;
-    const author = await User.findById(req.userId);
-    console.log(req.userId);
+    const user = await User.findById(req.userId);
+    console.log(user)
     if (req.files) {
       let fileName = Date.now().toString() + req.files.image.name;
       const __dirname = dirname(fileURLToPath(import.meta.url));
       req.files.image.mv(path.join(__dirname, "..", "uploads", fileName));
       const newNewsWithImage = new News({
+        authorName: user.name,
         title,
         newsText,
         image: fileName,
@@ -30,10 +31,12 @@ export const createNews = async (req, res) => {
     }
 
     const newNewsWithoutImage = new News({
+     
       title,
       newsText,
       image: "",
       author: req.userId,
+      authorName: user.name,
     });
     await newNewsWithoutImage.save();
     await User.findByIdAndUpdate(req.userId, {

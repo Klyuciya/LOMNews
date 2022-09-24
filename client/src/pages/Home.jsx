@@ -3,17 +3,21 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PopularNews } from '../components/PopularNews'
 import { NewsItem } from '../components/NewsItem'
-import { getAllNews } from '../redux/features/news/singleNewsSlice'
+import {  getAllNews } from '../redux/features/news/singleNewsSlice'
+import { getMe } from '../redux/features/auth/authSlice'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 export const Home = () => {
 
   const dispatch = useDispatch()
   const { news, popularNews} = useSelector((state) =>state.news)
+ 
+//   console.log(news)
+//   console.log(popularNews)
 
-  // console.log(state.news)
-  console.log(news)
-  console.log(popularNews)
 
   useEffect(() => {
       dispatch(getAllNews())
@@ -21,30 +25,34 @@ export const Home = () => {
 
   if (!news.length) {
       return (
-          <div className='text-xl text-center py-10'>
+          <div className='text-center py-10'>
               No news yet.
           </div>
       )
   }
 
   return (
-      <div className='max-w-[900px] mx-auto py-10'>
-           <div className='flex justify-between gap-8'>
+    <Container>
+        <Row>
+   
+      <Col lg={8} md={10} sm={12} >
                <div className='flex flex-col gap-10 basis-4/5'>
                   {news?.map((news, idx) => ( 
                         <NewsItem key={idx} news={news} />
                    ))}
               </div>
-              <div className='basis-1/5'>
-                  <div className='text-xs uppercase'>
+            </Col>
+
+              <Col sm={4} md={2}>
+                  <div className='flex fs-5 fw-bold offset-2 '>
                       Popular:
                   </div>
-
                   {popularNews?.map((news, idx) => (
                       <PopularNews key={idx} news={news} />
                   ))}
-              </div>
-          </div>
-      </div>
+              </Col>
+         
+      </Row>
+      </Container>
   )
 }
