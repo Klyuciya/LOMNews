@@ -7,16 +7,18 @@ export function roleMiddleware(roles){
             next();
         }
 
-        // const token = (req.headers.authorization || '').replace(/Bearer\s?/, '');
-            const token = req.headers.authorization.split(' ')[1]
+        const token = (req.headers.authorization || '').replace(/Bearer\s?/, '');
+            // const token = req.headers.authorization.split(' ')[1]
 
         try {
-            const token = req.headers.authorization.split(' ')[1]
+            
+            // const token = req.headers.authorization.split(' ')[1]
             if (!token) {
                 return res.status(403).json({message: "Cant define the token"})
             }
 
             const userRoles = jwt.verify(token, process.env.JWT_SECRET)
+           
 
             let hasRole = false
                 for (let i=0; i<roles.length ;i++ ){
@@ -31,7 +33,7 @@ export function roleMiddleware(roles){
             next()
         } catch (e) {
             console.log(e)
-            return res.status(403).json({message: "Admin is not authorized"})
+            return res.status(403).json({message: "You are not authorized"})
         }
     }
 }

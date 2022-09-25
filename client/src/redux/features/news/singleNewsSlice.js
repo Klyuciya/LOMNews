@@ -30,13 +30,51 @@ export const getAllNews = createAsyncThunk(
     }
 })
 
+export const getMyNews = createAsyncThunk(
+    'news/getMyNews', 
+    async (id) => {
+    try {
+        const { data } = await axios.get(`/news/user${id}/$my`)
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+export const editMyNews = createAsyncThunk(
+    'news/editMyNews',
+    async (updatedNews) => {
+        try {
+            const { data } = await axios.put(
+                `/news/user/my/edit/${updatedNews.id}`,
+                updatedNews,
+                 
+            )
+           
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    },
+)
+
+export const deleteMyNews = createAsyncThunk(
+    'news/deleMyNews', 
+    async (id) => {
+    try {
+        const { data } = await axios.delete(`/news/user/my/delete/${id}`, id)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 export const singleNewsSlice = createSlice({
     name: 'news',
     initialState,
     reducers: {},
     extraReducers: {
-        // Создание news
+        // Create news
         [createNews.pending]: (state) => {
             state.loading = true
         },
@@ -47,7 +85,7 @@ export const singleNewsSlice = createSlice({
         [createNews.rejected]: (state) => {
             state.loading = false
         },
-        // Получаение всех news
+        // Get all news
         [getAllNews.pending]: (state) => {
             state.loading = true
         },
@@ -57,6 +95,48 @@ export const singleNewsSlice = createSlice({
             state.popularNews = action.payload.popularNews
         },
         [getAllNews.rejected]: (state) => {
+            state.loading = false
+        },
+
+        // Get my news
+        [getMyNews.pending]: (state) => {
+            state.loading = true
+        },
+        [getMyNews.fulfilled]: (state, action) => {
+            state.loading = false
+            state.news = action.payload.news
+            state.popularNews = action.payload.popularNews
+        },
+        [getMyNews.rejected]: (state) => {
+            state.loading = false
+        },
+
+        // Update news
+        [editMyNews.pending]: (state) => {
+            state.loading = true
+        },
+        [editMyNews.fulfilled]: (state, action) => {
+            state.loading = false
+            const index = state.news.findIndex(
+                (news) => news._id === action.payload._id)
+            state.news[index] = action.payload
+            console.log("news.id: " + index)
+        },
+        [editMyNews.rejected]: (state) => {
+            state.loading = false
+        },
+
+        // Deleting news
+        [deleteMyNews.pending]: (state) => {
+            state.loading = true
+        },
+        [deleteMyNews.fulfilled]: (state, action) => {
+            state.loading = false
+            state.news = state.news.filter(
+                (news) => news._id !== action.payload._id,
+            )
+        },
+        [deleteMyNews.rejected]: (state) => {
             state.loading = false
         },
 

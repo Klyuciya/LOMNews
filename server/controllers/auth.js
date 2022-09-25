@@ -10,7 +10,7 @@ export const register = async (req, res) => {
     const isUsed = await User.findOne({ email });
 
     if (isUsed) {
-      return res.status(400).json({
+      return res.json({
         message: "User with this email already exists",
       });
     }
@@ -51,7 +51,7 @@ export const register = async (req, res) => {
     });
     // res.json({message: "OK"})
   } catch (error) {
-    res.status(400).json({ message: "User registration error" });
+    res.json({ message: "User registration error" });
   }
 };
 
@@ -67,11 +67,11 @@ export const login = async (req, res) => {
     }
 
     const isPasswordCorrect = await bcrypt.compare(
-      req.body.password,
+      password,
       user.password
     );
     if (!isPasswordCorrect) {
-      return res.status(400).json({
+      return res.json({
         message: "Wrong password",
       });
     }
@@ -109,6 +109,8 @@ export const getMe = async (req, res) => {
     const token = jwt.sign(
       {
         id: user._id,
+        email: user.email,
+        role: user.role,
       },
       process.env.JWT_SECRET,
       { expiresIn: "30d" }
