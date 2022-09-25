@@ -38,7 +38,7 @@ export const Navigbar = () => {
               Home
             </NavLink>
             <NavLink
-              to={"/posts"}
+              to={"/news"}
               href="#"
               style={({ isActive }) => (isActive ? activeStyles : undefined)}
             >
@@ -51,6 +51,22 @@ export const Navigbar = () => {
             >
               Add News
             </NavLink>
+            <NavLink
+              to={"/new"}
+              href="#"
+              style={({ isActive }) => (isActive ? activeStyles : undefined)}
+            >
+              Edit News
+            </NavLink>
+<br></br>
+            <NavLink
+              to={"/news/user/my"}
+              href="#"
+              style={({ isActive }) => (isActive ? activeStyles : undefined)}
+            >
+              My News
+            </NavLink>
+
           </Nav>
         </Container>
         <div className=" px-4 py-2">

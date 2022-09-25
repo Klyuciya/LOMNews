@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { PopularNews } from '../components/PopularNews'
 import { NewsItem } from '../components/NewsItem'
 import {  getAllNews } from '../redux/features/news/singleNewsSlice'
-import { getMe } from '../redux/features/auth/authSlice'
+// import { getMe } from '../redux/features/auth/authSlice'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -17,7 +17,16 @@ export const Home = () => {
  
 //   console.log(news)
 //   console.log(popularNews)
+// const {data} = useSelector((state) =>state.auth.data)
 
+// const {data} = useSelector((state) =>state.auth)
+
+// const isMatching = "Matching!";
+// if (data?._id === news.author){
+// console.log(isMatching);
+// }else{
+//   console.log(notMatching)
+// }
 
   useEffect(() => {
       dispatch(getAllNews())

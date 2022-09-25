@@ -10,7 +10,13 @@ import axios from "../utils/axios.js";
 import { useLocation} from "react-router"
 import { CommentItem } from "../components/CommentItem";
 
+import { AiTwotoneEdit,
+  AiFillDelete, } from 'react-icons/ai'
+
+
 export const NewsRead = () => {
+
+
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [news, setNews] = useState({})
@@ -30,7 +36,7 @@ export const NewsRead = () => {
  console.log(comments)
  console.log( comments.commentText)
 
-
+ const { user } = useSelector((state) => state.auth)
   
 
 
@@ -56,6 +62,20 @@ useEffect(() => {
 }, [fetchComments])
 
 
+
+
+
+// const {data} = useSelector((state) =>state.auth)
+// const isMatching = "Matching!";
+// if (data?._id === news.author){
+// console.log(isMatching);
+// }else{
+//   console.log('notMatching')
+// }
+
+// console.log(data?._id)
+// console.log(news.author)
+
 return (
   <div className="container">
     <div className="row">
@@ -79,6 +99,27 @@ return (
             <div className="category_list">
               <a href="#">{news.tags}</a>
             </div>
+
+            {/* Edit button */}
+
+            {user?._id === news.author && (
+                            <div className='flex gap-3 mt-4'>
+                                <button className='flex items-center justify-center gap-2 text-dark opacity-50'>
+                                    <Link to={`/${news._id}/edit`}>
+                                        <AiTwotoneEdit />
+                                    </Link>
+                                </button>
+                                {/* <button
+                                    onClick={removeNewsHandler}
+                                    className='flex items-center justify-center gap-2  text-dark opacity-50'
+                                >
+                                    <AiFillDelete />
+                                </button> */}
+                            </div>
+                        )} 
+
+                        
+
         </div> 
         <div className="readers_comment">
          {comments.map( comment=> <CommentItem key={comment._id} comment={comment} />

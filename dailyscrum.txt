@@ -245,6 +245,7 @@ Each member writes down answers to 3 questions in the following format:
 3.Need assistance / figure things out
    Need assistance with roles and S3 bucket
 
+
    2022/09/23 Liutsiia
 ===================
 1.Done / not done since last scrum:
@@ -255,6 +256,7 @@ Each member writes down answers to 3 questions in the following format:
     - show date and time
 3.Need assistance / figure things out
      - search on the site
+
 
       2022/09/23 Myrzagul
 ===================
@@ -267,3 +269,17 @@ Each member writes down answers to 3 questions in the following format:
     Learn how to work with S3 bucket for images
 3.Need assistance / figure things out
    Need assistance with roles and S3 bucket
+
+
+   2022/09/24 Myrzagul
+===================
+1.Done / not done since last scrum:
+   Wrote EditNews page 
+   Wrote/added Deletenews method
+   Figured out issue with the user roles 
+2. To do until next Scrum:
+    Add protected routes and give access to users depending on their roles
+    Apply bootstrap on the addnews/editnews form and validations
+    Learn how to work with S3 bucket for images
+3.Need assistance / figure things out
+   Need with protected routes, roles and S3 bucket

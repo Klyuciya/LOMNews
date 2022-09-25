@@ -113,16 +113,18 @@ export const deleteMyNews = async (req, res) => {
 //Edit News By Users Id and News Id
 export const editMyNews = async (req, res) => {
   try {
-    const { title, newsText, id } = req.body;
+    const { title, newsText, tags, id } = req.body;
     const news = await News.findById(req.params.id);
+
     if (req.files) {
       let fileName = Date.now().toString() + req.files.image.name;
       const __dirname = dirname(fileURLToPath(import.meta.url));
       req.files.image.mv(path.join(__dirname, "..", "uploads", fileName));
-      news.imgUrl = fileName || "";
+      news.image = fileName || "";
     }
     news.title = title;
     news.newsText = newsText;
+    news.tags = tags;
 
     await news.save();
 

@@ -19,6 +19,11 @@ export const Register = () => {
 
   const { status } = useSelector((state) => state.auth); //for toastify modal window
 
+  const data = useSelector((state) => state.auth);
+  const user = {data};
+  console.log(`user object: `, user);
+
+
   console.log("status regist: " + status);
   const isAuth = useSelector(checkIsAuth);
   //console.log("isAuth regist: " + isAuth);

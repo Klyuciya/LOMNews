@@ -4,12 +4,14 @@
 /* min-height: 100vh;
   color:black;
 } */
-*/ body {
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  line-height: 21px;
-  color: #444444;
-  font-weight: 300;
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size   : 14px;
+  line-height : 21px;
+  color       : #444444;
+  font-weight : 300;
   background: #f2f1f1;
 }
 
@@ -756,7 +758,7 @@ ul {
   }
 }
 /* --------------------
- Email Subscription 
+ Email Subscription
  -------------------*/
 
 .email_subscription {
