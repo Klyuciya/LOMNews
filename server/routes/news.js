@@ -15,6 +15,7 @@ router.post("/", checkAuth, roleMiddleware(['Editor']), newsValidation, newsVali
 
 
 
+// roleMiddleware(['Editor']),
 // Get All News
 //http://localhost:3002/api/news
 router.get('/', getAllNews);
