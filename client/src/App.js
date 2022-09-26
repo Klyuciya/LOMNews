@@ -7,6 +7,7 @@ import { Register } from "./pages/Register.jsx";
 import { Login } from "./pages/Login.jsx";
 import { MyNews } from "./pages/MyNews.jsx";
 import { EditNews } from "./pages/EditNews.jsx";
+import { Categorynav } from "./components/Categorynav.jsx"
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,9 +32,10 @@ function App() {
         <Route path="/news/user/my/:id" element={<NewsRead/>}></Route>
         <Route path="/news/user/my" element={<MyNews />}></Route>
         <Route path="new" element={<AddNews />}></Route>
-        <Route path='/:id/edit' element={<EditNews />} />
+        <Route path='/news/user/my/edit/:id' element={<EditNews />} />
         <Route path="register" element={<Register />}></Route>
         <Route path="login" element={<Login />}></Route>
+
       </Routes>
       <ToastContainer position="top-center" />
     </Layout>

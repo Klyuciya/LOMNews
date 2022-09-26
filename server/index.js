@@ -7,6 +7,7 @@ import fileUpload from 'express-fileupload';
 import authRoute from "./routes/auth.js";
 import newsRoute from "./routes/news.js"
 import commentsRoute from "./routes/comment.js"
+import categoryRoute from "./routes/category.js"
 
 const app = express();
 dotenv.config();
@@ -28,6 +29,7 @@ app.use(express.static('uploads'));
 app.use("/api/auth", authRoute);
 app.use("/api/news", newsRoute);
 app.use("/api/comments", commentsRoute);
+app.use("/api/category", categoryRoute);
 
 
 app.get("/", (req, res) => {
