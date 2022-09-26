@@ -31,7 +31,7 @@ function App() {
         <Route path="/news/user/my/:id" element={<NewsRead/>}></Route>
         <Route path="/news/user/my" element={<MyNews />}></Route>
         <Route path="new" element={<AddNews />}></Route>
-        <Route path='/:id/edit' element={<EditNews />} />
+        <Route path='/edit/:id' element={<EditNews />} />
         <Route path="register" element={<Register />}></Route>
         <Route path="login" element={<Login />}></Route>
       </Routes>

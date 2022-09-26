@@ -10,6 +10,8 @@ const [newsText, setNewsText] = useState('');
 const [image, setImage] = useState('');
 const [tags, setTags] = useState('');
 // const [category, setCategory] = useState('');
+// const [file, setFile] = useState()
+
 
 const dispatch = useDispatch()
 const navigate = useNavigate()
@@ -20,6 +22,7 @@ const submitHandler = () => {
       data.append('title', title)
       data.append('newsText', newsText)
       data.append('image', image)
+      // data.append('image', file)
       data.append('tags', tags)
       // data.append('category', category)
       dispatch(createNews(data))
@@ -28,6 +31,12 @@ const submitHandler = () => {
       console.log(error)
   }
 }
+
+// const fileSelected = event => {
+//   const file = event.target.files[0]
+//   setFile(file)
+// }
+
 const clearFormHandler = () => {
   setNewsText('')
   setTitle('')
@@ -40,6 +49,7 @@ const clearFormHandler = () => {
 <form onSubmit={(e)=> e.preventDefault()}>
 
 <label>Upload a picture 
+{/* <input onChange={fileSelected} type="file" accept="image/*"/></label> */}
   <input type="file" onChange={(e)=>setImage(e.target.files[0])}/></label>
   {/* <input type="url" onChange={(e)=>setImage(e.target.value)}/></label> */}
 

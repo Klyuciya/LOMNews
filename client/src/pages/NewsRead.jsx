@@ -105,7 +105,7 @@ return (
             {user?._id === news.author && (
                             <div className='flex gap-3 mt-4'>
                                 <button className='flex items-center justify-center gap-2 text-dark opacity-50'>
-                                    <Link to={`/${news._id}/edit`}>
+                                    <Link to={`/edit/${params.id}`}>
                                         <AiTwotoneEdit />
                                     </Link>
                                 </button>

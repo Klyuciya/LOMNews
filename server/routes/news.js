@@ -3,7 +3,11 @@ import { createNews, getAllNews, getNewsById, getMyNews, deleteMyNews, editMyNew
 import { checkAuth } from "../utils/checkAuth.js";
 import { newsValidation, newsValidationResult} from "../validators/newsValidation.js";
 import { roleMiddleware} from "../utils/roleMiddleware.js";
+// import multer from 'multer';
 
+
+// const storage =multer.memoryStorage()
+// const upload = multer({storage: storage})
 
 
 const router = new Router();
@@ -34,7 +38,7 @@ router.delete('/user/my/delete/:id', checkAuth, deleteMyNews);
 
 //Edit News By Users Id and News Id
 //http://localhost:3002/api/news/user/my/edit/:id
-router.put('/user/my/edit/:id', checkAuth, editMyNews);
+router.patch('/user/my/edit/:id', checkAuth, editMyNews);
 
 //Get News Comments
 //http://localhost:3002/api/news/comments/:id

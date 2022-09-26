@@ -5,11 +5,11 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 // Create News
 export const createNews = async (req, res) => {
-  // console.log(req.usersId)
+  console.log(req.usersId)
   try {
     const { title, newsText } = req.body;
     const user = await User.findById(req.userId);
-    console.log(user)
+    // console.log(user)
     if (req.files) {
       let fileName = Date.now().toString() + req.files.image.name;
       const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -26,6 +26,8 @@ export const createNews = async (req, res) => {
       await User.findByIdAndUpdate(req.userId, {
         $push: { news: newNewsWithImage },
       });
+
+  
 
       return res.json(newNewsWithImage);
     }
@@ -49,7 +51,6 @@ export const createNews = async (req, res) => {
     });
   }
 };
-
 
 
 // Get All News
@@ -114,7 +115,9 @@ export const deleteMyNews = async (req, res) => {
 export const editMyNews = async (req, res) => {
   try {
     const { title, newsText, tags, id } = req.body;
-    const news = await News.findById(req.params.id);
+    // console.log("backend " + title)
+    // console.log("backend " + id)
+    const news = await News.findById(id);
 
     if (req.files) {
       let fileName = Date.now().toString() + req.files.image.name;
@@ -124,9 +127,12 @@ export const editMyNews = async (req, res) => {
     }
     news.title = title;
     news.newsText = newsText;
+    // news.image = fileName;
     news.tags = tags;
 
+   
     await news.save();
+
 
     res.json(news);
   } catch (error) {

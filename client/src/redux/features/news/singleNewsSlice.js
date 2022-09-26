@@ -11,7 +11,7 @@ export const createNews = createAsyncThunk(
     'news/createNews',
     async (params) => {
         try {
-            const { data } = await axios.post('/news', params)
+            const { data } = await axios.post('/news', params, { headers: {'Content-Type': 'multipart/form-data'}})
             return data
         } catch (error) {
             console.log(error)
@@ -45,13 +45,13 @@ export const editMyNews = createAsyncThunk(
     'news/editMyNews',
     async (updatedNews) => {
         try {
-            const { data } = await axios.put(
-                `/news/user/my/edit/${updatedNews.id}`,
-                updatedNews,
-                 
-            )
+            const { data } = await axios.patch(`/news/user/my/edit/${updatedNews.id}`, updatedNews )
            
+        //     const formEntries = Array.from(updatedNews.entries());
+        //   console.log("formEntries " , formEntries);
+
             return data
+            
         } catch (error) {
             console.log(error)
         }
@@ -59,7 +59,7 @@ export const editMyNews = createAsyncThunk(
 )
 
 export const deleteMyNews = createAsyncThunk(
-    'news/deleMyNews', 
+    'news/deleteMyNews', 
     async (id) => {
     try {
         const { data } = await axios.delete(`/news/user/my/delete/${id}`, id)
@@ -117,10 +117,15 @@ export const singleNewsSlice = createSlice({
         },
         [editMyNews.fulfilled]: (state, action) => {
             state.loading = false
+            
             const index = state.news.findIndex(
-                (news) => news._id === action.payload._id)
+            news => news._id === action.payload._id)
+         
             state.news[index] = action.payload
-            console.log("news.id: " + index)
+                 
+
+         const datapayload = Array.from(action.payload);
+          console.log("datapayload " , datapayload);
         },
         [editMyNews.rejected]: (state) => {
             state.loading = false
