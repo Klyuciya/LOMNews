@@ -13,8 +13,13 @@ import { PopularsNews } from '../components/PopularsNews'
 import {  getAllNews } from '../redux/features/news/singleNewsSlice'
 import { AiTwotoneEdit,
   AiFillDelete, } from 'react-icons/ai'
+  import { deleteMyNews } from '../redux/features/news/singleNewsSlice'
+  import { toast } from 'react-toastify'
 
 export const NewsRead = () => {
+
+  const navigate = useNavigate()
+
 
   const location = useLocation();
   var path = location.pathname.split("/")[2];
@@ -26,10 +31,21 @@ export const NewsRead = () => {
   const { popularsNews} = useSelector((state) =>state.news)
 
   
-  
   useEffect(() => {
       dispatch(getAllNews())
   }, [dispatch])
+
+  const removeNewsHandler = () => {
+    try {
+        dispatch(deleteMyNews(news._id))
+        toast('Successfully deleted news')
+        navigate('/news/user/my')
+        console.log(news._id)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
   console.log(location)
   useEffect (() => {
@@ -61,6 +77,7 @@ export const NewsRead = () => {
         console.log(error)
     }
 }, [params.id, dispatch])
+
 
 useEffect(() => {
   fetchComments()
@@ -99,12 +116,12 @@ return (
                                         <AiTwotoneEdit />
                                     </Link>
                                 </button>
-                                {/* <button
+                                <button
                                     onClick={removeNewsHandler}
                                     className='flex items-center justify-center gap-2  text-dark opacity-50'
                                 >
                                     <AiFillDelete />
-                                </button> */}
+                                </button>
                             </div>
                         )} 
 

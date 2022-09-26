@@ -3,31 +3,31 @@ import { AiFillEye, AiOutlineMessage, AiTwotoneEdit,
     AiFillDelete, } from 'react-icons/ai'
 import Moment from 'react-moment'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { deleteMyNews } from '../redux/features/news/singleNewsSlice'
-import { toast } from 'react-toastify'
-import axios from '../utils/axios'
+// import { deleteMyNews } from '../redux/features/news/singleNewsSlice'
+// import { toast } from 'react-toastify'
+// import axios from '../utils/axios'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 
 export const EditItem = ({ news }) => {
 
-    const { user } = useSelector((state) => state.auth)
-    const params = useParams()
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    // const { user } = useSelector((state) => state.auth)
+    // const params = useParams()
+    // const dispatch = useDispatch()
+    // const navigate = useNavigate()
 
 
-       const removeNewsHandler = () => {
-        try {
-            dispatch(deleteMyNews(news._id))
-            toast('Пост был удален')
-            navigate('/news')
-            console.log(news._id)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    //    const removeNewsHandler = () => {
+    //     try {
+    //         dispatch(deleteMyNews(news._id))
+    //         toast('Пост был удален')
+    //         navigate('/news')
+    //         console.log(news._id)
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
     if (!news) {
         return (
@@ -78,9 +78,8 @@ export const EditItem = ({ news }) => {
                         <span>{news.comments?.length || 0} </span>
                     </button>
                 </div>
-            
 
-                {user?._id === news.author && (
+                {/* {user?._id === news.author && (
                             <div className='flex gap-3 mt-4'>
                                 <button className='flex items-center justify-center gap-2 text-dark opacity-50'>
                                     <Link to={`/edit/${news._id}`}>
@@ -94,7 +93,7 @@ export const EditItem = ({ news }) => {
                                     <AiFillDelete />
                                 </button>
                             </div>
-                        )} 
+                        )}  */}
 
             </div>
         </Link>

@@ -10,7 +10,7 @@ export const Categorynav = () => {
 
   useEffect(() => {
     const getCats = async () => {
-      const res = await axios.get("/category");
+      const res = await axios.get("/categories");
       setCats(res.data);
       // console.log(setCats);
     };

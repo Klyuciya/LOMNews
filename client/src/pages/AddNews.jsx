@@ -9,7 +9,7 @@ const [title, setTitle] = useState('');
 const [newsText, setNewsText] = useState('');
 const [image, setImage] = useState('');
 const [tags, setTags] = useState('');
-// const [category, setCategory] = useState('');
+const [category, setCategory] = useState('');
 // const [file, setFile] = useState()
 
 
@@ -24,7 +24,7 @@ const submitHandler = () => {
       data.append('image', image)
       // data.append('image', file)
       data.append('tags', tags)
-      // data.append('category', category)
+      data.append('category', category)
       dispatch(createNews(data))
       navigate('/')
   } catch (error) {
@@ -41,7 +41,7 @@ const clearFormHandler = () => {
   setNewsText('')
   setTitle('')
   setTags('')
-  // setCategory('')
+  setCategory('')
 }
 
 
@@ -62,6 +62,21 @@ const clearFormHandler = () => {
   <label>Tags 
   <input onChange={(e)=>setTags(e.target.value)}value={tags} type="text" placeholder = 'tags'/></label>
   
+  <label>Categories 
+  <input onChange={(e)=>setCategory(e.target.value)} value={category} type="text" placeholder = 'category'/></label>
+  {/* <input list="categories" onChange={(e)=>setCategory(e.target.value)} id="category" value={category}  name={category} type="text" placeholder = 'category'/>
+  <datalist id="categories">
+    <option value="politics">POLITICS</option>
+    <option value="business">BUSINESS</option>
+    <option value="sport">SPORT</option>
+    <option value="canada">CANADA</option>
+    <option value="world">WORLD</option>
+    <option value="technology">TECHNOLOGY</option>
+    <option value="entertainment">ENTERTAINMENT</option>
+    <option value="science">SCIENCE</option>
+    <option value="health">HEALTH</option>
+  </datalist> */}
+
 <div>
   <button  type='submit' onClick={submitHandler} > Add </button>
   <button onClick={clearFormHandler} > Cancel </button>

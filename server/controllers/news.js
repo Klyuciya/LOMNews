@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 export const createNews = async (req, res) => {
   console.log(req.usersId)
   try {
-    const { title, newsText } = req.body;
+    const { title, newsText, category, tags } = req.body;
     const user = await User.findById(req.userId);
     // console.log(user)
     if (req.files) {
@@ -21,6 +21,7 @@ export const createNews = async (req, res) => {
         image: fileName,
         tags: req.body.tags,
         author: req.userId,
+        category: req.body.category,
       });
       await newNewsWithImage.save();
       await User.findByIdAndUpdate(req.userId, {
@@ -39,6 +40,8 @@ export const createNews = async (req, res) => {
       image: "",
       author: req.userId,
       authorName: user.name,
+      category: req.body.category,
+      tags: req.body.tags,
     });
     await newNewsWithoutImage.save();
     await User.findByIdAndUpdate(req.userId, {
@@ -114,23 +117,27 @@ export const deleteMyNews = async (req, res) => {
 //Edit News By Users Id and News Id
 export const editMyNews = async (req, res) => {
   try {
-    const { title, newsText, tags, id } = req.body;
+    const { title, newsText, tags, category, id } = req.body;
     // console.log("backend " + title)
     // console.log("backend " + id)
     const news = await News.findById(id);
 
+    // const { title, newsText, image, tags, id } = req.body;
+    // const news = await News.findById(id);
     if (req.files) {
-      let fileName = Date.now().toString() + req.files.image.name;
-      const __dirname = dirname(fileURLToPath(import.meta.url));
-      req.files.image.mv(path.join(__dirname, "..", "uploads", fileName));
-      news.imgUrl = fileName || "";
+      let fileName = Date.now().toString() + req.files.image.name
+      const __dirname = dirname(fileURLToPath(import.meta.url))
+      req.files.image.mv(path.join(__dirname, "..", "uploads", fileName))
+      news.image = fileName || "";
     }
     news.title = title;
     news.newsText = newsText;
     // news.image = fileName;
     news.tags = tags;
-
-   
+    news.category = category;
+    // news.image = image;
+    // news.tags =tags;
+  
     await news.save();
 
 

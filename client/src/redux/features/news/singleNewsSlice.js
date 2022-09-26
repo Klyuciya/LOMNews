@@ -11,7 +11,7 @@ export const createNews = createAsyncThunk(
     'news/createNews',
     async (params) => {
         try {
-            const { data } = await axios.post('/news', params, { headers: {'Content-Type': 'multipart/form-data'}})
+            const { data } = await axios.post('/news', params)
             return data
         } catch (error) {
             console.log(error)
@@ -45,10 +45,8 @@ export const editMyNews = createAsyncThunk(
     'news/editMyNews',
     async (updatedNews) => {
         try {
-            const { data } = await axios.patch(`/news/user/my/edit/${updatedNews.id}`, updatedNews )
-           
-        //     const formEntries = Array.from(updatedNews.entries());
-        //   console.log("formEntries " , formEntries);
+            const { data } = await axios.patch(`/news/user/my/edit/${updatedNews.id}`,
+             updatedNews, )
 
             return data
             
@@ -117,15 +115,13 @@ export const singleNewsSlice = createSlice({
         },
         [editMyNews.fulfilled]: (state, action) => {
             state.loading = false
-            
             const index = state.news.findIndex(
-            news => news._id === action.payload._id)
-                // (news) => news._id === action.payload._id,)
+            (news) => news._id === action.payload._id,
+            )
             state.news[index] = action.payload
                  
-
-         const datapayload = Array.from(action.payload);
-          console.log("datapayload " , datapayload);
+        //  const datapayload = Array.from(action.payload);
+        //   console.log("datapayload " , datapayload);
         },
         [editMyNews.rejected]: (state) => {
             state.loading = false
