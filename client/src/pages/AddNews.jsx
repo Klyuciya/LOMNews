@@ -51,8 +51,6 @@ const clearFormHandler = () => {
 <label>Upload a picture 
 {/* <input onChange={fileSelected} type="file" accept="image/*"/></label> */}
   <input type="file" onChange={(e)=>setImage(e.target.files[0])}/></label>
-  {/* <input type="url" onChange={(e)=>setImage(e.target.value)}/></label> */}
-
   <div>{image && (<img src={URL.createObjectURL(image)} alt={image.name} />)}</div>
  
 <label>News Title 
@@ -63,17 +61,6 @@ const clearFormHandler = () => {
 
   <label>Tags 
   <input onChange={(e)=>setTags(e.target.value)}value={tags} type="text" placeholder = 'tags'/></label>
-
-  {/* <label>Category 
-  <input onChange={(e)=>setCategory(e.target.value)} list="categories" />
-  <datalist id="categories">
-    <option value="politics"/>
-    <option value="economy"/>
-    <option value="fashion"/>
-    <option value="nature"/>
-    <option value="food"/>
-  </datalist>
-  </label> */}
   
 <div>
   <button  type='submit' onClick={submitHandler} > Add </button>

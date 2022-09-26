@@ -40,10 +40,10 @@ export const Register = () => {
 
   console.log("status regist2: " + status);
 
-  const validationSchema = Yup.object().shape({
-    username: Yup.string().min(3).max(15).required(),
-    password: Yup.string().min(4).max(20).required(),
-  });
+  // const validationSchema = Yup.object().shape({
+  //   username: Yup.string().min(3).max(15).required(),
+  //   password: Yup.string().min(4).max(20).required(),
+  // });
 
   const handleSubmit = () => {
     try {

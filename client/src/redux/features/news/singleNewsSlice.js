@@ -3,7 +3,7 @@ import axios from '../../../utils/axios.js';
 
 const initialState = {
     news: [],
-    popularNews: [],
+    popularsNews: [],
     loading: false,
 }
 
@@ -92,7 +92,7 @@ export const singleNewsSlice = createSlice({
         [getAllNews.fulfilled]: (state, action) => {
             state.loading = false
             state.news = action.payload.news
-            state.popularNews = action.payload.popularNews
+            state.popularsNews = action.payload.popularsNews
         },
         [getAllNews.rejected]: (state) => {
             state.loading = false
@@ -105,7 +105,7 @@ export const singleNewsSlice = createSlice({
         [getMyNews.fulfilled]: (state, action) => {
             state.loading = false
             state.news = action.payload.news
-            state.popularNews = action.payload.popularNews
+            state.popularsNews = action.payload.popularsNews
         },
         [getMyNews.rejected]: (state) => {
             state.loading = false
@@ -120,7 +120,7 @@ export const singleNewsSlice = createSlice({
             
             const index = state.news.findIndex(
             news => news._id === action.payload._id)
-         
+                // (news) => news._id === action.payload._id,)
             state.news[index] = action.payload
                  
 

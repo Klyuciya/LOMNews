@@ -1,33 +1,21 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { PopularNews } from '../components/PopularNews'
+import { PopularsNews } from '../components/PopularsNews'
 import { NewsItem } from '../components/NewsItem'
 import {  getAllNews } from '../redux/features/news/singleNewsSlice'
-// import { getMe } from '../redux/features/auth/authSlice'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
+import "../index.css"
 
 export const Home = () => {
 
   const dispatch = useDispatch()
-  const { news, popularNews} = useSelector((state) =>state.news)
+  const { news, popularsNews} = useSelector((state) =>state.news)
  
-//   console.log(news)
-//   console.log(popularNews)
-// const {data} = useSelector((state) =>state.auth.data)
 
-// const {data} = useSelector((state) =>state.auth)
-
-// const isMatching = "Matching!";
-// if (data?._id === news.author){
-// console.log(isMatching);
-// }else{
-//   console.log(notMatching)
-// }
-
+  const formEntries = Array.from(popularsNews.entries());
+  console.log("formEntries " , formEntries);
+  
+  
   useEffect(() => {
       dispatch(getAllNews())
   }, [dispatch])
@@ -41,27 +29,43 @@ export const Home = () => {
   }
 
   return (
-    <Container>
-        <Row>
+<body>
    
-      <Col lg={8} md={10} sm={12} >
-               <div className='flex flex-col gap-10 basis-4/5'>
-                  {news?.map((news, idx) => ( 
+	    <div class="row">
+	    	<div class="col-md-9">
+        <div class="item_caregory red"><h2 class="text-light">Latest news</h2></div>
+	    		<div class="news_area">
+					<div id="featured-news-carousal" class="carousel slide" data-ride="carousel">
+					    
+						<div class="carousel-inner" role="listbox">					    
+							<div class="item active feature_news_item">
+                
+								<div class="item_wrapper pt-3">
+                
+                {news?.map((news, idx) => ( 
                         <NewsItem key={idx} news={news} />
                    ))}
-              </div>
-            </Col>
+			
+								</div>	
 
-              <Col sm={4} md={2}>
-                  <div className='flex fs-5 fw-bold offset-2 '>
-                      Popular:
-                  </div>
-                  {popularNews?.map((news, idx) => (
-                      <PopularNews key={idx} news={news} />
-                  ))}
-              </Col>
-         
-      </Row>
-      </Container>
+							</div>
+
+						</div>
+	    			</div>
+	    		</div>
+	    	</div>
+        <div class="col-md-3">
+          <div class="item_caregory red"><h6 class="text-light">Popular news</h6></div>
+								<div class="news_area">
+                {popularsNews?.map((news, idx) => (
+                      <PopularsNews key={idx} news={news} />
+                   ))}
+			
+								</div>	
+
+							</div>
+
+						</div>
+         </body>
   )
 }

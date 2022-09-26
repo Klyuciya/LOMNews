@@ -57,7 +57,7 @@ export const createNews = async (req, res) => {
 export const getAllNews = async (req, res) => {
   try {
     const news = await News.find().sort("-createdAt");
-    const popularsNews = await News.find().limit(5).sort("-viewsQty");
+    const popularsNews = await News.find().limit(10).sort("-viewsQty");
     if (!news) {
       return res.json({ message: "No News" });
     }
@@ -123,7 +123,7 @@ export const editMyNews = async (req, res) => {
       let fileName = Date.now().toString() + req.files.image.name;
       const __dirname = dirname(fileURLToPath(import.meta.url));
       req.files.image.mv(path.join(__dirname, "..", "uploads", fileName));
-      news.image = fileName || "";
+      news.imgUrl = fileName || "";
     }
     news.title = title;
     news.newsText = newsText;
