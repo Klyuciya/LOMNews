@@ -3,24 +3,29 @@ import User from "../models/Users.js";
 import Comment from "../models/Comments.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import Categories from "../models/Categories.js";
 // Create News
 export const createNews = async (req, res) => {
-  console.log(req.usersId)
+  // console.log(req.usersId)
   try {
-    const { title, newsText, category, tags } = req.body;
+    const { title, newsText } = req.body;
+
     const user = await User.findById(req.userId);
+    const category = await Categories.findById(req.categoryId);
+
     // console.log(user)
     if (req.files) {
       let fileName = Date.now().toString() + req.files.image.name;
       const __dirname = dirname(fileURLToPath(import.meta.url));
-      req.files.image.mv(path.join(__dirname, "..", "uploads", fileName));
+      req.files.image.mv(path.join(__dirname, '..', 'uploads', fileName));
+      
       const newNewsWithImage = new News({
-        authorName: user.name,
         title,
         newsText,
         image: fileName,
         tags: req.body.tags,
         author: req.userId,
+        authorName: user.name,
         category: req.body.category,
       });
       await newNewsWithImage.save();
@@ -28,7 +33,11 @@ export const createNews = async (req, res) => {
         $push: { news: newNewsWithImage },
       });
 
-  
+      console.log("category._id ", req.body.category)
+
+      await Categories.findByIdAndUpdate(req.body.category, {
+        $push: { news: newNewsWithImage },
+      });
 
       return res.json(newNewsWithImage);
     }
@@ -44,9 +53,15 @@ export const createNews = async (req, res) => {
       tags: req.body.tags,
     });
     await newNewsWithoutImage.save();
+
     await User.findByIdAndUpdate(req.userId, {
       $push: { news: newNewsWithoutImage },
     });
+
+    await Categories.findByIdAndUpdate(req.body.category, {
+      $push: { news: newNewsWithoutImage },
+    });
+
     res.json(newNewsWithoutImage);
   } catch (error) {
     res.json({
@@ -159,5 +174,22 @@ export const getNewsComments = async (req, res) => {
     res.json(list);
   } catch (error) {
     res.json({ message: "Something went wrong." });
+  }
+};
+
+// Get News By Categories Id
+export const getNewsByCategory = async (req, res) => {
+  try {
+    const category = await Categories.findById(req.params.id);
+    const news = await News.findById(category);
+    
+    const list = await Promise.all(
+      category.news.map((news) => {
+        return News.findById(news._id);
+      })
+    );
+    res.json(list);
+  } catch (error) {
+    res.json({ message: "Something going wrong" });
   }
 };

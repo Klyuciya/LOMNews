@@ -6,6 +6,9 @@ const CategoriesSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    news: [{
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: "News",},]
   },
   { timestamps: true }
 );

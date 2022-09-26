@@ -29,7 +29,7 @@ export const NewsRead = () => {
   const params = useParams()
   const dispatch = useDispatch()
   const { popularsNews} = useSelector((state) =>state.news)
-
+  const { user } = useSelector((state) => state.auth)
   
   useEffect(() => {
       dispatch(getAllNews())
@@ -59,7 +59,7 @@ export const NewsRead = () => {
  console.log(comments)
  console.log( comments.commentText)
 
- const { user } = useSelector((state) => state.auth)
+ 
   
   const handleSubmit = () => {
     try {
