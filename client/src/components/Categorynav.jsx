@@ -12,7 +12,7 @@ export const Categorynav = () => {
     const getCats = async () => {
       const res = await axios.get("/categories");
       setCats(res.data);
-      // console.log(setCats);
+      console.log(res.data);
     };
     getCats();
   }, []);
