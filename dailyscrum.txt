@@ -344,3 +344,17 @@ Each member writes down answers to 3 questions in the following format:
    Need with protected routes, roles, S3 bucket and heroku
 
 
+
+
+2022/09/26 Oxana
+===================
+1.Done / not done since last scrum:
+-get all users ( backend )
+	-admin panel get all users (frontend)
+     -forms validation login/signup
+2. To do until next Scrum:
+	-admin panel edit state and role of the user
+	-continue with bootstrap css
+	-adding content for website/presentation
+3.Need assistance / figure things out
+     
