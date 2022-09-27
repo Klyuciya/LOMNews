@@ -10,7 +10,7 @@ const newsSchema = new mongoose.Schema({
     author: {type: mongoose.Schema.Types.ObjectId, ref: "users"},
     authorName: {type: String},
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: "Comments",},],
-    category: [{type: mongoose.Schema.Types.ObjectId, ref: "categories"},]
+    category: [{type: mongoose.Schema.Types.ObjectId, ref: "Categories",},]
 },
 {timestamps:true},
 )

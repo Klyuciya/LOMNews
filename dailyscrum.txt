@@ -316,3 +316,23 @@ Each member writes down answers to 3 questions in the following format:
 	-continue with bootstrap css
 3.Need assistance / figure things out
      -getting messages from backend while login
+<<<<<<< HEAD
+=======
+     
+     
+   2022/09/25 Myrzagul
+===================
+1.Done / not done since last scrum:
+   Looked through some tutorials about S3, and tried implementing it in our project
+   Created S3 bucket on aws, but having troubles applying it to our project
+   Worked on fixing the bug with adding categories when creating news 
+2. To do until next Scrum:
+    Add protected routes and give access to users depending on their roles
+    learn about deploying the project on heroku
+3.Need assistance / figure things out
+   Need with protected routes, roles, S3 bucket and heroku
+<<<<<<< HEAD
+=======
+
+>>>>>>> 66b9545bd184866464f94a44939e87263ebcc87f
+>>>>>>> 0f356438cc1bdbc9887f3393e8e28d435722fce8

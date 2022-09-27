@@ -9,22 +9,45 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import axios from "../utils/axios.js";
 import { useLocation} from "react-router"
 import { CommentItem } from "../components/CommentItem";
-
+import { PopularsNews } from '../components/PopularsNews'
+import {  getAllNews } from '../redux/features/news/singleNewsSlice'
 import { AiTwotoneEdit,
   AiFillDelete, } from 'react-icons/ai'
-
+  import { deleteMyNews } from '../redux/features/news/singleNewsSlice'
+  import { toast } from 'react-toastify'
 
 export const NewsRead = () => {
 
+  const navigate = useNavigate()
+
 
   const location = useLocation();
-  const path = location.pathname.split("/")[2];
+  var path = location.pathname.split("/")[2];
   const [news, setNews] = useState({})
   const [commentText, setCommentText] = useState('')
   const { comments } = useSelector((state) => state.comment)
-  const dispatch = useDispatch()
   const params = useParams()
-  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { popularsNews} = useSelector((state) =>state.news)
+  const { user } = useSelector((state) => state.auth)
+  
+  useEffect(() => {
+      dispatch(getAllNews())
+  }, [dispatch])
+
+  const removeNewsHandler = () => {
+    try {
+        dispatch(deleteMyNews(news._id))
+        toast('Successfully deleted news')
+        navigate('/news/user/my')
+        console.log(news._id)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+  console.log(location)
   useEffect (() => {
     const getNews = async () => {
       const res = await axios.get("/news/" + path)
@@ -36,10 +59,8 @@ export const NewsRead = () => {
  console.log(comments)
  console.log( comments.commentText)
 
- const { user } = useSelector((state) => state.auth)
+ 
   
-
-
   const handleSubmit = () => {
     try {
         const newsId = params.id
@@ -57,24 +78,10 @@ export const NewsRead = () => {
     }
 }, [params.id, dispatch])
 
+
 useEffect(() => {
   fetchComments()
 }, [fetchComments])
-
-
-
-
-
-// const {data} = useSelector((state) =>state.auth)
-// const isMatching = "Matching!";
-// if (data?._id === news.author){
-// console.log(isMatching);
-// }else{
-//   console.log('notMatching')
-// }
-
-// console.log(data?._id)
-// console.log(news.author)
 
 return (
   <div className="container">
@@ -89,7 +96,7 @@ return (
           />}
         </div>
           <div className="item_wrapper">
-						<div className="news_item_title">
+						<div className="news_item_title text-decoration-none">
 							<h2>{news.title}</h2> 
             </div>
             <div className="item_meta">{new Date(news.createDate).toDateString()} by:{news.authorName} </div>
@@ -105,16 +112,16 @@ return (
             {user?._id === news.author && (
                             <div className='flex gap-3 mt-4'>
                                 <button className='flex items-center justify-center gap-2 text-dark opacity-50'>
-                                    <Link to={`/${news._id}/edit`}>
+                                    <Link to={`/edit/${params.id}`}>
                                         <AiTwotoneEdit />
                                     </Link>
                                 </button>
-                                {/* <button
+                                <button
                                     onClick={removeNewsHandler}
                                     className='flex items-center justify-center gap-2  text-dark opacity-50'
                                 >
                                     <AiFillDelete />
-                                </button> */}
+                                </button>
                             </div>
                         )} 
 
@@ -160,6 +167,20 @@ return (
       
      
       </div>
+      <div class="col-md-3">
+          <div class="item_caregory red"><h6 class="text-light">Popular news</h6></div>
+								<div class="news_area">
+                {popularsNews?.map((news, idx) => (
+                      <PopularsNews key={idx} news={news} />
+                   ))}
+			
+								</div>	
+
+							</div>
+
+						{/* </div>
+            </div> */}
     </div>
   </div>
+  
   )};

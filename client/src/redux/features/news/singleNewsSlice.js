@@ -3,7 +3,7 @@ import axios from '../../../utils/axios.js';
 
 const initialState = {
     news: [],
-    popularNews: [],
+    popularsNews: [],
     loading: false,
 }
 
@@ -45,13 +45,11 @@ export const editMyNews = createAsyncThunk(
     'news/editMyNews',
     async (updatedNews) => {
         try {
-            const { data } = await axios.put(
-                `/news/user/my/edit/${updatedNews.id}`,
-                updatedNews,
-                 
-            )
-           
+            const { data } = await axios.patch(`/news/user/my/edit/${updatedNews.id}`,
+             updatedNews, )
+
             return data
+            
         } catch (error) {
             console.log(error)
         }
@@ -59,7 +57,7 @@ export const editMyNews = createAsyncThunk(
 )
 
 export const deleteMyNews = createAsyncThunk(
-    'news/deleMyNews', 
+    'news/deleteMyNews', 
     async (id) => {
     try {
         const { data } = await axios.delete(`/news/user/my/delete/${id}`, id)
@@ -92,7 +90,7 @@ export const singleNewsSlice = createSlice({
         [getAllNews.fulfilled]: (state, action) => {
             state.loading = false
             state.news = action.payload.news
-            state.popularNews = action.payload.popularNews
+            state.popularsNews = action.payload.popularsNews
         },
         [getAllNews.rejected]: (state) => {
             state.loading = false
@@ -105,7 +103,7 @@ export const singleNewsSlice = createSlice({
         [getMyNews.fulfilled]: (state, action) => {
             state.loading = false
             state.news = action.payload.news
-            state.popularNews = action.payload.popularNews
+            state.popularsNews = action.payload.popularsNews
         },
         [getMyNews.rejected]: (state) => {
             state.loading = false
@@ -118,9 +116,12 @@ export const singleNewsSlice = createSlice({
         [editMyNews.fulfilled]: (state, action) => {
             state.loading = false
             const index = state.news.findIndex(
-                (news) => news._id === action.payload._id)
+            (news) => news._id === action.payload._id,
+            )
             state.news[index] = action.payload
-            console.log("news.id: " + index)
+                 
+        //  const datapayload = Array.from(action.payload);
+        //   console.log("datapayload " , datapayload);
         },
         [editMyNews.rejected]: (state) => {
             state.loading = false
