@@ -373,3 +373,16 @@ Each member writes down answers to 3 questions in the following format:
 	-adding content for website/presentation
 3.Need assistance / figure things out
      
+ 2022/09/26 Liutsiia
+===================
+1.Done / not done since last scrum:
+  	- Finish with styling
+	- access with role
+	- deploying the project on server (Heroku/Vercel)
+        - prepare for the presentation
+2. To do until next Scrum:
+	- testing all
+	- add content
+	- tried fixing the bugs
+3.Need assistance / figure things out
+	- prepered for presentation
