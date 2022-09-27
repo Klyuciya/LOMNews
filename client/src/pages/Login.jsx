@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
-import {getMe, userData } from "../redux/features/auth/authSlice";
+// import {getMe, userData } from "../redux/features/auth/authSlice";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";

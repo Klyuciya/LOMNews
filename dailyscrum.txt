@@ -329,7 +329,14 @@ Each member writes down answers to 3 questions in the following format:
     learn about deploying the project on heroku
 3.Need assistance / figure things out
    Need with protected routes, roles, S3 bucket and heroku
-<<<<<<< HEAD
-=======
 
->>>>>>> 66b9545bd184866464f94a44939e87263ebcc87f
+    2022/09/26 Myrzagul
+===================
+1.Done / not done since last scrum:
+  Tried fixing the bugs with integrating S3 bucket to our project but failed
+   Worked on the navigation bar making it possible to change depending on the user role
+   Fixed the bug with categories
+   Finish up the project and prepare for the presentation
+3.Need assistance / figure things out
+   Need with protected routes, roles, S3 bucket and heroku
+

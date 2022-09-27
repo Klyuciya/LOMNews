@@ -43,7 +43,6 @@ function App() {
         <Route path='/news/category/:id' element={<NewsByCategories/>} />
         <Route path="register" element={<Register />}></Route>
         <Route path="login" element={<Login />}></Route>
-        {/* <Route path="/" element={<RequireAuth allowedRoles=(Editor)><Home /></RequireAuth>}></Route> */}
 
       </Routes>
       <ToastContainer position="top-center" />

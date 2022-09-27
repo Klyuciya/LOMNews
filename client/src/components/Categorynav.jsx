@@ -25,6 +25,11 @@ export const Categorynav = () => {
 
     }
   }
+
+//   const refreshPage = ()=>{
+//     window.location.reload(true);
+//  }
+
   return (
     
     <div class="menu_area ">
@@ -35,7 +40,7 @@ export const Categorynav = () => {
         <ul className="nav navbar-nav d-flex flex-row">
           {cats.map((c) => (
             <li>
-              <Link to={`/news/category/${c._id}`} className="page-scroll text-decoration-none">{c.name}</Link>
+              <Link to={`news/category/${c._id}`}  className="page-scroll text-decoration-none">{c.name}</Link>
             </li>
             
           ))}
