@@ -39,7 +39,7 @@ export const loginUser = createAsyncThunk(
       if (data.token) {
         window.localStorage.setItem("token", data.token);
       }
-      console.log("Auth.jsx data: " + data);
+      console.log("Auth.jsx data: " + data.user);
       console.log("Auth.jsx user info: " + data.message);
       return data;
     } catch (error) {
@@ -48,9 +48,7 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-export const getMe = createAsyncThunk(
-  "auth/loginUser", 
-  async () => {
+export const getMe = createAsyncThunk("auth/loginUser", async () => {
   try {
     const { data } = await axios.get("/auth/me");
     console.log("user get: " + data.user);
@@ -59,6 +57,21 @@ export const getMe = createAsyncThunk(
     console.log(error);
   }
 });
+
+// //all Users for admin panel
+// export const getAllUsers = createAsyncThunk(
+//   "auth/admin/getAllUsers",
+//   async () => {
+//     try {
+//       const { data } = await axios.get("/auth/users");
+//       const formEntries = Array.from(data.entries());
+//       console.log("formEntries ", formEntries);
+//       return data;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// );
 
 export const authSlice = createSlice({
   name: "auth",
@@ -98,7 +111,7 @@ export const authSlice = createSlice({
       state.isLoading = false;
       state.status = action.payload.message;
       state.user = action.payload.user;
-      console.log("login "+ action.payload.user._id)
+      console.log("login " + action.payload.user._id);
       state.token = action.payload.token;
     },
     [loginUser.rejectWithValue]: (state, action) => {
@@ -121,6 +134,19 @@ export const authSlice = createSlice({
       state.status = action.payload.message;
       state.isLoading = false;
     },
+    // // Get all users
+    // [getAllUsers.pending]: (state) => {
+    //   state.loading = true;
+    // },
+    // [getAllUsers.fulfilled]: (state, action) => {
+    //   state.loading = false;
+    //   state.user = action.payload.user;
+    //   // const formEntries = Array.from(user.entries());
+    //   console.log("formEntries slice ", action.payload.user);
+    // },
+    // [getAllUsers.rejected]: (state) => {
+    //   state.loading = false;
+    // },
   },
 });
 

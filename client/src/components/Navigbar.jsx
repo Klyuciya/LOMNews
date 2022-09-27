@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { checkIsAuth, logout } from "../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
@@ -13,10 +13,25 @@ export const Navigbar = () => {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   console.log("isAuth  " + isAuth);
   //highlight active link
   const activeStyles = {
     color: "black",
+  };
+
+  const adminPanelHandler = () => {
+    navigate("/admin");
+    // dispatch(logout());
+    // window.localStorage.removeItem("token");
+    // toast("You have been logged out");
+  };
+  const adminPanelHandlerInactive = () => {
+    // navigate("/admin");
+    // dispatch(logout());
+    // window.localStorage.removeItem("token");
+    toast("Please Log in");
   };
 
   const logoutHandler = () => {
@@ -58,7 +73,7 @@ export const Navigbar = () => {
             >
               Edit News
             </NavLink>
-<br></br>
+            <br></br>
             <NavLink
               to={"/news/user/my"}
               href="#"
@@ -66,9 +81,19 @@ export const Navigbar = () => {
             >
               My News
             </NavLink>
-
           </Nav>
         </Container>
+        <div className=" px-4 py-2">
+          {isAuth ? (
+            <Button onClick={adminPanelHandler} variant="primary">
+              Admin
+            </Button>
+          ) : (
+            <Button onClick={adminPanelHandlerInactive} variant="primary">
+              Admin
+            </Button>
+          )}
+        </div>
         <div className=" px-4 py-2">
           {isAuth ? (
             <Button onClick={logoutHandler} variant="primary">
