@@ -7,7 +7,7 @@ export const CommentItem = ({comment}) => {
 								<img alt=" " className="media-object" data-src=""
 										 src="" data-holder-rendered="true"/> {comment.commentText}
 							</div> */}
-							<div className="media-body p-5">
+							<div className="media-body p-2">
 								<h4>{comment.authorName}</h4>
 							{/* {new Date(comment.dtWhen).toDateString()} */}
 								<p className="media-heading">

@@ -6,7 +6,7 @@ const CategoriesSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    news: {type: mongoose.Schema.Types.ObjectId, ref: "news"},
+    news: [{type: mongoose.Schema.Types.ObjectId, ref: "news"},],
 
     
   },
