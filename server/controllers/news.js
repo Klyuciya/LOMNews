@@ -13,7 +13,7 @@ export const createNews = async (req, res) => {
     const user = await User.findById(req.userId);
     const category = await Categories.findById(req.categoryId);
 
-    // console.log(user)
+    console.log(user)
     if (req.files) {
       let fileName = Date.now().toString() + req.files.image.name;
       const __dirname = dirname(fileURLToPath(import.meta.url));

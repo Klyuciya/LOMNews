@@ -11,20 +11,27 @@ import { Admin } from "./pages/Admin.jsx";
 import { EditUser } from "./pages/EditUser.jsx";
 import { Categorynav } from "./components/Categorynav.jsx";
 
+import { NewsByCategories } from "./pages/NewsByCategories.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getMe } from "./redux/features/auth/authSlice.js";
+import { getMe, checkIsAuth } from "./redux/features/auth/authSlice.js";
 // import { checkIsAuth } from "./redux/features/auth/authSlice";
 
 function App() {
   const dispatch = useDispatch();
-  // const isAuth = useSelector(checkIsAuth);
+  const isAuth = useSelector(checkIsAuth);
 
   useEffect(() => {
     dispatch(getMe());
   }, [dispatch]);
+
+  // const{user} = useSelector((state) => state.auth)
+  // if(isAuth){
+  // const allowedRole = user.role[0];
+  // console.log("user role ", allowedRole[0])
+  // }
 
   return (
     <Layout>

@@ -55,6 +55,13 @@ export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  //console.log("status: " + status);
+  // const { user } = useSelector((state) => state.auth);
+  // const { token } = useSelector((state) => state.auth);
+  // console.log("userinfo.role " + user + status);
+
+  // console.log("Login.jsx status: " + status);
+
   useEffect(() => {
     if (status) toast(status);
     if (isAuth) navigate("/");
@@ -72,89 +79,107 @@ export const Login = () => {
   };
 
   return (
-    <Container className="d-flex">
-      <Formik
-        initialValues={initialValues}
-        validate={validate}
-        onSubmit={handleSubmit}
-      >
-        {(formik) => {
-          const {
-            values,
-            handleChange,
-            handleSubmit,
-            errors,
-            touched,
-            handleBlur,
-            isValid,
-            dirty,
-          } = formik;
-          console.log(errors);
-          return (
-            <Form onSubmit={(e) => e.preventDefault()} className="mx-auto">
-              <h1 className="text-lg  font-bold text-black text-center py-2">
-                Login
-              </h1>
-              <Row className="mb-6 py-2">
-                <label htmlFor="email">Email</label>
-                <Field
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  //  onChange={(e) => setEmail(e.target.value)}
-                  // onChange={(e) => {
-                  //   setEmail(e.target.value);
-                  //   handleChange();
-                  // }}
-                  onBlur={(e) => setEmail(e.target.value)}
-                  className={errors.email ? "input-error" : null}
-                />
-                {errors.email && <span className="error">{errors.email}</span>}
-              </Row>
-
-              <Row className="mb-6 py-2">
-                <label htmlFor="password">Password</label>
-                <Field
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={values.password}
-                  onChange={handleChange}
-                  //onChange={(e) => setPassword(e.target.value)}
-                  // onChange={(e) => {
-                  //   setPassword(e.target.value);
-                  //   handleChange();
-                  // }}
-                  onBlur={(e) => setPassword(e.target.value)}
-                  className={errors.password ? "input-error" : null}
-                />
-                {errors.password && (
-                  <span className="error">{errors.password}</span>
-                )}
-              </Row>
-              <div className="flex gap-8 justify-center mt-4">
-                <Button
-                  type="submit"
-                  onClick={handleSubmit}
-                  className={!(dirty && isValid) ? "disabled-btn" : ""}
-                  disabled={!(dirty && isValid)}
-                >
+    <body>
+      <Container className="d-flex">
+        <Formik
+          initialValues={initialValues}
+          validate={validate}
+          onSubmit={handleSubmit}
+        >
+          {(formik) => {
+            const {
+              values,
+              handleChange,
+              handleSubmit,
+              errors,
+              touched,
+              handleBlur,
+              isValid,
+              dirty,
+            } = formik;
+            console.log(errors);
+            return (
+              <Form onSubmit={(e) => e.preventDefault()} className="mx-auto">
+                <h1 className="text-lg  font-bold text-black text-center py-2">
                   Login
-                </Button>
-                <Link
-                  to="/register"
-                  className="flex justify-center items-center  px-4 "
-                >
-                  New to LOMNews? Sign Up
-                </Link>
+                </h1>
+                <Row className="mb-6 py-2">
+                  <label htmlFor="email">Email</label>
+                  <Field
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    //  onChange={(e) => setEmail(e.target.value)}
+                    // onChange={(e) => {
+                    //   setEmail(e.target.value);
+                    //   handleChange();
+                    // }}
+                    onBlur={(e) => setEmail(e.target.value)}
+                    className={errors.email ? "input-error" : null}
+                  />
+                  {errors.email && (
+                    <span className="error">{errors.email}</span>
+                  )}
+                </Row>
+
+                <Row className="mb-6 py-2">
+                  <label htmlFor="password">Password</label>
+                  <Field
+                    type="password"
+                    name="password"
+                    id="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    //onChange={(e) => setPassword(e.target.value)}
+                    // onChange={(e) => {
+                    //   setPassword(e.target.value);
+                    //   handleChange();
+                    // }}
+                    onBlur={(e) => setPassword(e.target.value)}
+                    className={errors.password ? "input-error" : null}
+                  />
+                  {errors.password && (
+                    <span className="error">{errors.password}</span>
+                  )}
+                </Row>
+                <div className="flex gap-8 justify-center mt-4">
+                  <Button
+                    type="submit"
+                    onClick={handleSubmit}
+                    className={!(dirty && isValid) ? "disabled-btn" : ""}
+                    disabled={!(dirty && isValid)}
+                  >
+                    Login
+                  </Button>
+                  <Link
+                    to="/register"
+                    className="flex justify-center items-center  px-4 "
+                  >
+                    New to LOMNews? Sign Up
+                  </Link>
+                </div>
+              </Form>
+            );
+          }}
+        </Formik>
+      </Container>
+      <div class="copyright-section footer_section section_wrapper section_wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-7">
+              <div class="copyright">
+                © Copyright 2022 - LOMNEWS. Developed by: Liutsiia, Oxana,
+                Myrzagul
               </div>
-            </Form>
-          );
-        }}
-      </Formik>
-    </Container>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+        </div>
+      </div>
+    </body>
   );
 };
 

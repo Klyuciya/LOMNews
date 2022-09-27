@@ -12,7 +12,7 @@ export const Categorynav = () => {
     const getCats = async () => {
       const res = await axios.get("/categories");
       setCats(res.data);
-      // console.log(setCats);
+      console.log(res.data);
     };
     getCats();
   }, []);
@@ -35,7 +35,7 @@ export const Categorynav = () => {
         <ul className="nav navbar-nav d-flex flex-row">
           {cats.map((c) => (
             <li>
-              <Link to={`/?cat=${c.name}`} className="page-scroll text-decoration-none">{c.name}</Link>
+              <Link to={`/news/category/${c._id}`} className="page-scroll text-decoration-none">{c.name}</Link>
             </li>
             
           ))}

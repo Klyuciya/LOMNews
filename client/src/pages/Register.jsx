@@ -79,7 +79,7 @@ export const Register = () => {
     if (isAuth) navigate("/"); //if logged in then homepage
   }, [status, isAuth, navigate]);
 
-  console.log("status regist2: " + status);
+  // console.log("status regist2: " + status);
 
   //   const validationSchema = Yup.object().shape({
   //     username: Yup.string().min(3).max(15).required(),

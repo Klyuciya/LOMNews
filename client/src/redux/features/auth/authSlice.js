@@ -51,7 +51,7 @@ export const loginUser = createAsyncThunk(
 export const getMe = createAsyncThunk("auth/loginUser", async () => {
   try {
     const { data } = await axios.get("/auth/me");
-    console.log("user get: " + data.user);
+    // console.log("user get: " + data.user);
     return data;
   } catch (error) {
     console.log(error);
@@ -93,7 +93,7 @@ export const authSlice = createSlice({
     [registerUser.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.status = action.payload.message; //message from backend
-      console.log("action.payload.message" + action.payload.message);
+      // console.log("action.payload.message" + action.payload.message);
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
@@ -152,7 +152,7 @@ export const authSlice = createSlice({
 
 //verify if there is a token
 export const checkIsAuth = (state) => Boolean(state.auth.token);
-// export const userData = (action) => Object(action.auth.user);
+export const userData = (action) => Object(action.auth.user);
 
 // export const LoginMessage = (state) => String(state.auth.message);
 

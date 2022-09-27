@@ -10,6 +10,7 @@ export const createComment = createAsyncThunk(
     'comments/createComment',
     async ({ newsId, commentText }) => {
         try {
+            // const { data } = await axios.post(`/comments/${newsId}`, params)
             const { data } = await axios.post(`/comments/${newsId}`, {
                 newsId,
                 commentText,
@@ -22,19 +23,6 @@ export const createComment = createAsyncThunk(
     },
 )
 
-// export const createComment = createAsyncThunk(
-//     'comments/createComment',
-//     async (params) => {
-//         try {
-//             const { data } = await axios.comments('/comments/${newsId}', params)
-//             console.log(data)
-//             return data
-            
-//         } catch (error) {
-//             console.log(error)
-//         }
-//     },
-// )
 
 export const getNewsComments = createAsyncThunk(
     'comment/getNewsComments',

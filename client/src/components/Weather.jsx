@@ -1,4 +1,3 @@
-import { createEntityAdapter } from "@reduxjs/toolkit";
 import React, { useEffect, useState } from "react";
 import logo from "../img/logo.jpg"
 import ad from "../img/your-ad-here.jpg"
@@ -19,7 +18,7 @@ export const Weather = () => {
       .then(res => res.json())
       .then(result => {
         setData(result)
-        console.log(result)
+        // console.log(result)
       });
     }
     fetchData();

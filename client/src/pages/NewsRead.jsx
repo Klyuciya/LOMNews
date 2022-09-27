@@ -40,14 +40,14 @@ export const NewsRead = () => {
         dispatch(deleteMyNews(news._id))
         toast('Successfully deleted news')
         navigate('/news/user/my')
-        console.log(news._id)
+        // console.log(news._id)
     } catch (error) {
         console.log(error)
     }
 }
 
 
-  console.log(location)
+  // console.log(location)
   useEffect (() => {
     const getNews = async () => {
       const res = await axios.get("/news/" + path)
@@ -56,8 +56,8 @@ export const NewsRead = () => {
     getNews()
   },[path])
 
- console.log(comments)
- console.log( comments.commentText)
+//  console.log(comments)
+//  console.log( comments.commentText)
 
  
   
@@ -181,6 +181,20 @@ return (
 						{/* </div>
             </div> */}
     </div>
+    <div class="copyright-section footer_section section_wrapper section_wrapper">
+         <div class="container-fluid">
+           <div class="row">
+             <div class="col-md-3">
+             </div>
+             <div class="col-md-7">
+               <div class="copyright">
+               © Copyright 2022 - LOMNEWS. Developed by: Liutsiia, Oxana, Myrzagul</div>
+             </div>
+             <div class="col-md-2">
+             </div>
+           </div>
+         </div>
+       </div>
   </div>
   
   )};

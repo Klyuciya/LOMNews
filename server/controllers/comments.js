@@ -8,27 +8,28 @@ import Comments from "../models/Comments.js"
 // Create Comment
 export const createComment = async (req, res) => {
     try {
-        const {newsId,commentText}= req.body
-        if(!commentText) {
-            return res.json('Comment cannot be empty'
-        )}
+        const {commentText, id} = req.body        
+        const user = await User.findById(req.userId);
+        console.log(commentText)
 
-            const newComment = new Comment({ commentText })
+            const newComment = new Comment({ 
+                commentText: commentText ,
+                author: req.userId,
+                authorName: user.name,
+                news:req.params.id
+            })
+
+            console.log(newComment)
             await newComment.save()
-            try {
-                await News.findByIdAndUpdate(newsId, {
+
+            console.log(newComment)
+                await News.findByIdAndUpdate(req.params.id, {
                     $push: { comments: newComment._id },
                 })
-            } catch (error) {
-                console.log(error)
-            }
-            try {
+        
                 await User.findByIdAndUpdate(req.userId, {
                     $push: { comments: newComment._id },
                 })
-            } catch (error) {
-                console.log(error)
-            }
     
             res.json(newComment)
     }     catch (error) {
