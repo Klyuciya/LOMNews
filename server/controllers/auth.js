@@ -64,10 +64,7 @@ export const login = async (req, res) => {
       });
     }
 
-    const isPasswordCorrect = await bcrypt.compare(
-      password,
-      user.password
-    );
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
       return res.json({
         message: "Wrong password",
@@ -130,6 +127,38 @@ export const getUsers = async (req, res) => {
     const users = await User.find();
     res.json(users);
   } catch (error) {
-    console.log(error);
+    res.json({ message: "Something going wrong" });
+  }
+};
+
+// // delete User
+// export const deleteUser = async (req, res) => {
+//   try {
+//     const user = await Users.findByIdAndDelete(req.params.id);
+//     if (!user) return res.json({ message: "the user does not exist" });
+
+//     await Users.findByIdAndUpdate(req.userId, {
+//       $pull: { users: req.params.id },
+//     });
+
+//     res.json({ message: "User has been deleted" });
+//   } catch (error) {
+//     res.json({ message: "Error delete user" });
+//   }
+// };
+
+// Update user
+export const updateUser = async (req, res) => {
+  try {
+    const { role, status, id } = req.body;
+    const user = await User.findById(req.params.id);
+    user.role = role;
+    user.status = status;
+
+    await user.save();
+
+    res.json(user);
+  } catch (error) {
+    res.json({ message: "Something went wrong" });
   }
 };

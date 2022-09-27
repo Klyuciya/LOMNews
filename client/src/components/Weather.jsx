@@ -1,4 +1,3 @@
-import { createEntityAdapter } from "@reduxjs/toolkit";
 import React, { useEffect, useState } from "react";
 import logo from "../img/logo.jpg"
 import ad from "../img/your-ad-here.jpg"

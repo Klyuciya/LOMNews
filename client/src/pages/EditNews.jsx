@@ -60,22 +60,20 @@ const [tags, setTags] = useState('');
   }, [fetchNews])
 
   return (
-      <form id="myform"
-          className='w-1/3 mx-auto py-10'
-          onSubmit={(e) => e.preventDefault()}
-      >
-          <label className='text-gray-300 py-2 bg-gray-600 text-xs mt-2 flex items-center justify-center border-2 border-dotted cursor-pointer'>
-                Upload an image:
-                <input
-                    type='file'
-                    className='hidden'
-                    onChange={(e) => {
+
+    <div class="add_a_comment">
+    <div class="single_media_title"><h2>Add a News</h2></div>
+    <div class="comment_form" >
+      <form onSubmit={(e)=> e.preventDefault()}>
+                      <div class="form-group">
+                        {/* <label>Upload a picture  */}
+
+                        <input type="file"  class="custom-file-input" onChange={(e) => {
                         setNewImage(e.target.files[0])
                         setOldImage('')
-                    }}
-                />
-            </label>
-          <div className='flex object-cover py-2'>
+                    }}/>
+                        {/* </label> */}
+                        <div className='flex object-cover py-2'>
           {oldImage && (
                     <img
                         src={`http://localhost:3002/${oldImage}`}
@@ -89,110 +87,52 @@ const [tags, setTags] = useState('');
                   />
               )}
           </div>
+                      </div>
+                      <div class="form-group">
+                        <input onChange={(e)=>setTitle(e.target.value)} class="form-control" value={title} type="text" placeholder = 'Title'/>
+                        {/* </label> */}
+                      </div>
+                      <div class="form-group comment">
+                      {/* <label>Body  */}
 
-          <label className='text-xs text-white opacity-70'>
-              Title:
-              <input
-                  type='text'
-                  name="title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder='title'
-                  className='mt-1 text-black w-full rounded-lg bg-gray-400 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
-              />
-          </label>
+                          <textarea class="form-control" onChange={(e)=>setNewsText(e.target.value)}  value={newsText} placeholder = 'Body of the news'/>
+                          {/* </label> */}
 
-          <label className='text-xs text-white opacity-70'>
-              Body:
-              <textarea
-                  onChange={(e) => setNewsText(e.target.value)}
-                  name="newsText"
-                  value={newsText}
-                  placeholder='Text of the news'
-                  className='mt-1 text-black w-full rounded-lg bg-gray-400 border py-1 px-2 text-xs outline-none resize-none h-40 placeholder:text-gray-700'
-              />
-          </label>
+                      </div>
+                      <div class="form-group comment">
+                      {/* <label>Tags  */}
+  <input class="form-control" onChange={(e)=>setTags(e.target.value)}value={tags} type="text" placeholder = 'Tags'/>
+                      </div>
+                     
+                      
 
-          <label className='text-xs text-white opacity-70'>
-              Tags 
-              <input 
-              type="text" 
-              value={tags}
-              name="tags"
-              onChange={(e)=>setTags(e.target.value)}
-              placeholder = 'tags'
-              className='mt-1 text-black w-full rounded-lg bg-gray-400 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'/>
-          </label>
+                      
 
+          <div class="d-flex flex-row gap-2 mt-4">
 
-          <div className='flex gap-8 items-center justify-center mt-4'>
-              <button type="button"
-                  onClick={submitHandler}
-                  className='flex justify-center items-center bg-gray-600 text-xs rounded-sm py-2 px-4'
-              >
-                  Update
-              </button>
-
-              <button
-                  onClick={clearFormHandler}
-                  className='flex justify-center items-center bg-red-500 text-xs rounded-sm py-2 px-4'
-              >
-                  Cancel
-              </button>
-          </div>
-    {/* <form onSubmit={(e)=> e.preventDefault()}>
-<label className='text-gray-300 py-2 bg-gray-600 text-xs mt-2 flex items-center justify-center border-2 border-dotted cursor-pointer'>
-                Прикрепить изорбажение:
-    {/* <label>Upload a picture  */}
-      {/* <input 
-      type='file' 
-      className='hidden'
-      onChange={(e)=>{
-        setNewImage(e.target.files[0])
-        setOldImage('')
-        }}/>
-        </label> */}
-      {/* <div> */}
-      {/* <div className='flex object-cover py-2'>
-                {oldImage && (
-                    <img
-                        src={`http://localhost:3002/${oldImage}`}
-                        alt={oldImage.name}
-                    />
-                )}
-                {newImage && (
-                    <img
-                        src={URL.createObjectURL(newImage)}
-                        alt={newImage.name}
-                    />
-                )}
-            </div> */}
-     {/* {oldImage && (
-        <img
-            src={`http://localhost:3002/${oldImage}`}
-            alt={oldImage.name}
-        />
-        )}
-        {newImage && (
-        <img 
-            src={URL.createObjectURL(newImage)} 
-            alt={newImage.name} />
-        )}
-        </div> */}
-    {/* <label>News Title 
-      <input onChange={(e)=>setTitle(e.target.value)} value={title} type="text" placeholder = 'Title'/></label>
-    
-    <label>Body 
-      <textarea onChange={(e)=>setNewsText(e.target.value)}  value={newsText} placeholder = 'Body of the news'/></label>
-    
-      <label>Tags 
-      <input onChange={(e)=>setTags(e.target.value)}value={tags} type="text" placeholder = 'tags'/></label>
-      
-    <div>
-      <button  type='submit' onClick={submitHandler} > Add </button>
-      <button onClick={clearFormHandler} > Cancel </button>
-    </div> */} 
-    
-      </form>
+                    
+                        <button  type='submit' onClick={submitHandler} class="btn btn-submit btn-dark"> Update </button>
+                        {/* </div>
+                        <div class="d-grid gap-2 m-5"> */}
+                        <button onClick={clearFormHandler} class="btn btn-submit btn-dark "> Cancel </button>
+                        </div>
+                  </form>
+                </div>
+                <div class="copyright-section footer_section section_wrapper section_wrapper">
+         <div class="container-fluid">
+           <div class="row">
+             <div class="col-md-3">
+             </div>
+             <div class="col-md-7">
+               <div class="copyright">
+               © Copyright 2022 - LOMNEWS. Developed by: Liutsiia, Oxana, Myrzagul</div>
+             </div>
+             <div class="col-md-2">
+             </div>
+           </div>
+         </div>
+       </div>
+  </div>
+  
   )
 }

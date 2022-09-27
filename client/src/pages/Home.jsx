@@ -65,7 +65,23 @@ export const Home = () => {
 
 							</div>
 
-						</div>
-         </body>
+						</div> 
+
+         <div class="copyright-section footer_section section_wrapper section_wrapper">
+         <div class="container-fluid">
+           <div class="row">
+             <div class="col-md-3">
+             </div>
+             <div class="col-md-7">
+               <div class="copyright">
+               © Copyright 2022 - LOMNEWS. Developed by: Liutsiia, Oxana, Myrzagul</div>
+             </div>
+             <div class="col-md-2">
+             </div>
+           </div>
+         </div>
+       </div>
+       </body>
+
   )
 }

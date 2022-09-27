@@ -1,19 +1,18 @@
-import React, {useState,  useEffect} from "react";
+import React, {useState} from "react";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createNews } from '../redux/features/news/singleNewsSlice';
 import axios from "../utils/axios.js";
 import { Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css"
-
+// import "bootstrap/dist/css/bootstrap.min.css"
 export const AddNews = () => {
 
 const [title, setTitle] = useState('');
 const [newsText, setNewsText] = useState('');
 const [image, setImage] = useState('');
 const [tags, setTags] = useState('');
-const [category, setCategory] = useState([]);
-// const [value, setValue]= useState('');
+const [category, setCategory] = useState('');
+// const [file, setFile] = useState()
 
 
 
@@ -66,89 +65,98 @@ const clearFormHandler = () => {
   setTitle('')
   setTags('')
   setCategory('')
-
-  
 }
 
 
   return (
-<form onSubmit={(e)=> e.preventDefault()}>
 
-<label>Upload a picture 
-{/* <input onChange={fileSelected} type="file" accept="image/*"/></label> */}
-  <input type="file" onChange={(e)=>setImage(e.target.files[0])}/></label>
-  <div>{image && (<img src={URL.createObjectURL(image)} alt={image.name} />)}</div>
- 
-<label>News Title 
-  <input onChange={(e)=>setTitle(e.target.value)} value={title} type="text" placeholder = 'Title'/></label>
+    <div class="add_a_comment">
+    <div class="single_media_title"><h2>Add a News</h2></div>
+    <div class="comment_form" >
+      <form onSubmit={(e)=> e.preventDefault()}>
+                      <div class="form-group">
+                        {/* <label>Upload a picture  */}
 
-<label>Body 
-  <textarea onChange={(e)=>setNewsText(e.target.value)}  value={newsText} placeholder = 'Body of the news'/></label>
+                        <input type="file"  class="custom-file-input" onChange={(e)=>setImage(e.target.files[0])}/>
+                        {/* </label> */}
+                        <div>{image && (<img src={URL.createObjectURL(image)} alt={image.name} />)}</div>
+                      </div>
+                      <div class="form-group">
+                        {/* <label>News Title  */}
+                        <input onChange={(e)=>setTitle(e.target.value)} class="form-control" value={title} type="text" placeholder = 'Title'/>
+                        {/* </label> */}
+                      </div>
+                      <div class="form-group comment">
+                      {/* <label>Body  */}
 
-  <label>Tags 
-  <input onChange={(e)=>setTags(e.target.value)}value={tags} type="text" placeholder = 'tags'/></label>
-  
-  <input type="checkbox" id="canada" onChange={(e)=>setCategory(e.target.value)} value="6331d6e4d2ef306f243daaa5"/>
-  <label for="canada">Canada</label>
+                          <textarea class="form-control" onChange={(e)=>setNewsText(e.target.value)}  value={newsText} placeholder = 'Body of the news'/>
+                          {/* </label> */}
 
-  <input type="checkbox" id="world" onChange={(e)=>setCategory(e.target.value)} value="6331d6d2d2ef306f243daaa3"/>
-  <label for="world">World</label>
-  
-  <input type="checkbox" id="business" onChange={(e)=>setCategory(e.target.value)} value="6331d6bdd2ef306f243daaa1"/>
-  <label for="business">Business</label>
-  
-  <input type="checkbox" id="health" onChange={(e)=>setCategory(e.target.value)} value="6331d6a3d2ef306f243daa9f"/>
-  <label for="health">Health</label>
-  
-  <input type="checkbox" id="science" onChange={(e)=>setCategory(e.target.value)} value="6331d68dd2ef306f243daa9d"/>
-  <label for="science">Science</label>
-  
-  <input type="checkbox" id="technology" onChange={(e)=>setCategory(e.target.value)} value="6331d673d2ef306f243daa9b"/>
-  <label for="technology">Technology</label>
-  
-  <input type="checkbox" id="politics" onChange={(e)=>setCategory(e.target.value)} value="6331d659d2ef306f243daa99"/>
-  <label for="politics">Politics</label>
+                      </div>
+                      <div class="form-group comment">
+                      {/* <label>Tags  */}
+  <input class="form-control" onChange={(e)=>setTags(e.target.value)}value={tags} type="text" placeholder = 'Tags'/>
+  {/* </label> */}
+                      </div>
+                     <div class="my-4">
+                     <h6>Select category: </h6>
+                     </div>
+                      
 
-  <input type="checkbox" id="sport" onChange={(e)=>setCategory(e.target.value)} value="6331d5e637feccc826630085"/>
-  <label for="sport">Sport</label>
-
-  <input type="checkbox" id="entertainment" onChange={(e)=>setCategory(e.target.value)} value="6331cc3da76829cd3e80f7e6"/>
-  <label for="entertainment">Entertainment</label>
-
-  
-  {/* <label>Categories  */}
-    
-  {/* <input onChange={(e)=>setCategory(e.target.value)} value={category} type="text" placeholder = 'category'/></label> */}
-  {/* <select type="text" placeholder = 'category'> */}
-  {/* <input list="categories" type="text" /> */}
-
-{/* {options} */}
-
-  {/* <datalist id="categories"> */}
-  {/* <option value="633148ed7c42798b6c32f2d7"  onChange={(e)=>setCategory(e.target.value)} >CANADA</option> */}
-    {/* <option value="world">WORLD</option> */}
-  {/* {category.map((c) => (
-    
-    <option value={category}  onChange={(e)=>setCategory(e.target.value)}>{c.name}</option>
-     ))}  */}
-    {/* // <option value="business">BUSINESS</option>
-    // <option value="sport">SPORT</option>
-    <option value="canada">CANADA</option>
-    <option value="world">WORLD</option>
-    // <option value="technology">TECHNOLOGY</option>
-    // <option value="entertainment">ENTERTAINMENT</option>
-    // <option value="science">SCIENCE</option>
-    // <option value="health">HEALTH</option> */}
-  {/* </datalist> */}
-  {/* </select> */}
-{/* </label> */}
-
-
-<div>
-  <button  type='button' onClick={submitHandler} > Add </button>
-  <button onClick={clearFormHandler} > Cancel </button>
+                      <div class="form-check form-check-inline">
+<input class="form-check-input" type="radio"name="inlineRadioOptions"  id="canada" onChange={(e)=>setCategory(e.target.value)} value="6331d6e4d2ef306f243daaa5"/>
+  <label  class="form-check-label" for="canada">Canada</label>
 </div>
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="world" onChange={(e)=>setCategory(e.target.value)} value="6331d6d2d2ef306f243daaa3"/>
+  <label for="world">World</label>
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="business" onChange={(e)=>setCategory(e.target.value)} value="6331d6bdd2ef306f243daaa1"/>
+  <label for="business">Business</label>
+  
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="health" onChange={(e)=>setCategory(e.target.value)} value="6331d6a3d2ef306f243daa9f"/>
+  <label for="health">Health</label>
+  
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="science" onChange={(e)=>setCategory(e.target.value)} value="6331d68dd2ef306f243daa9d"/>
+  <label for="science">Science</label>
+  
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="technology" onChange={(e)=>setCategory(e.target.value)} value="6331d673d2ef306f243daa9b"/>
+  <label for="technology">Technology</label>
+  
 
-  </form>
+  <input class="form-check-input" type="radio"name="inlineRadioOptions"  id="politics" onChange={(e)=>setCategory(e.target.value)} value="6331d659d2ef306f243daa99"/>
+  <label for="politics">Politics</label>
+
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="sport" onChange={(e)=>setCategory(e.target.value)} value="6331d5e637feccc826630085"/>
+  <label for="sport">Sport</label>
+
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="entertainment" onChange={(e)=>setCategory(e.target.value)} value="6331cc3da76829cd3e80f7e6"/>
+  <label for="entertainment">Entertainment</label>
+
+          <div class="d-flex flex-row gap-2 mt-4">
+
+                    
+                        <button  type='submit' onClick={submitHandler} class="btn btn-submit btn-dark"> Add </button>
+                        {/* </div>
+                        <div class="d-grid gap-2 m-5"> */}
+                        <button onClick={clearFormHandler} class="btn btn-submit btn-dark "> Cancel </button>
+                        </div>
+                  </form>
+                </div>
+                <div class="copyright-section footer_section section_wrapper section_wrapper">
+         <div class="container-fluid">
+           <div class="row">
+             <div class="col-md-3">
+             </div>
+             <div class="col-md-7">
+               <div class="copyright">
+               © Copyright 2022 - LOMNEWS. Developed by: Liutsiia, Oxana, Myrzagul</div>
+             </div>
+             <div class="col-md-2">
+             </div>
+           </div>
+         </div>
+       </div>
+  </div>
+  
+
   );
 };

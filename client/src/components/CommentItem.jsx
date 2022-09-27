@@ -3,14 +3,19 @@ import React from "react";
 export const CommentItem = ({comment}) => {
     return (
         <div className="media">
-							<div className="media-left">
+							{/* <div className="media-left">
 								<img alt=" " className="media-object" data-src=""
-										 src="" data-holder-rendered="true"/>{new Date(comment.dtWhen).toDateString()}
-							</div>
-							<div className="media-body">
-								<h4 className="media-heading">
+										 src="" data-holder-rendered="true"/> {comment.commentText}
+							</div> */}
+							<div className="media-body p-2">
+								<h4>{comment.authorName}</h4>
+							{/* {new Date(comment.dtWhen).toDateString()} */}
+								<p className="media-heading">
                                     {comment.commentText}
-                                </h4>
+                                </p>
+								<div class="comment_article_social text-muted pl-3 ">
+								{new Date(comment.dtWhen).toDateString()}
+									</div>
 							</div>
         </div> )
 

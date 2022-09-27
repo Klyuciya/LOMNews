@@ -305,9 +305,9 @@ Each member writes down answers to 3 questions in the following format:
 2022/09/25 Oxana
 ===================
 1.Done / not done since last scrum:
-	-get all users ( backend )
+-get all users ( backend )
 	-admin panel get all users (frontend)
-     	-didn't finish forms validation login/signup
+     -didn't finish forms validation login/signup
 2. To do until next Scrum:
 	-contine with forms validation login/signup
 	-admin panel edit state and role of the user
@@ -316,6 +316,8 @@ Each member writes down answers to 3 questions in the following format:
 	-continue with bootstrap css
 3.Need assistance / figure things out
      -getting messages from backend while login
+<<<<<<< HEAD
+=======
      
      
    2022/09/25 Myrzagul
@@ -330,6 +332,7 @@ Each member writes down answers to 3 questions in the following format:
 3.Need assistance / figure things out
    Need with protected routes, roles, S3 bucket and heroku
 
+
     2022/09/26 Myrzagul
 ===================
 1.Done / not done since last scrum:
@@ -339,4 +342,5 @@ Each member writes down answers to 3 questions in the following format:
    Finish up the project and prepare for the presentation
 3.Need assistance / figure things out
    Need with protected routes, roles, S3 bucket and heroku
+
 
