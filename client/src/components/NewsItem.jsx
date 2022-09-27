@@ -2,9 +2,12 @@ import React from 'react'
 import { AiFillEye, AiOutlineMessage } from 'react-icons/ai'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 export const NewsItem = ({ news }) => {
+
+const navigate = useNavigate();
 
     if (!news) {
         return (
@@ -17,7 +20,7 @@ export const NewsItem = ({ news }) => {
    
     return (
 
-        <Link  to={`news/${news._id}`} style={{textDecoration: 'none'}}>
+        <Link  to={`/`+`news/${news._id}`} style={{textDecoration: 'none'}}>
             <div className='flex flex-col basis-1/4 flex-grow mb-5 m-5 news_container p-3'>
                 <div
                     className={

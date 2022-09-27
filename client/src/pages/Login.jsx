@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
+import {getMe, userData } from "../redux/features/auth/authSlice";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
@@ -26,15 +27,11 @@ export const Login = () => {
   // const { token } = useSelector((state) => state.auth);
   // console.log("userinfo.role " + user + status);
 
-  console.log("Login.jsx status: " + status);
+  // console.log("Login.jsx status: " + status);
   const isAuth = useSelector(checkIsAuth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
- 
- 
-
-
-
+  
   useEffect(() => {
     if (status) toast(status);
     if (isAuth) navigate("/");
@@ -52,6 +49,7 @@ export const Login = () => {
   const handleSubmit = () => {
     try {
       dispatch(loginUser({ email, password }));
+  
     } catch (error) {
       console.log(error);
     }
@@ -108,9 +106,9 @@ export const Login = () => {
               name="password"
             />
           </Row>
-
+          {/* onSubmit={checkRole} */}
           <div className="flex gap-8 justify-center mt-4">
-            <Button type="submit" onClick={handleSubmit} className=" py-2 px-4">
+            <Button type="submit" onClick={handleSubmit}  className=" py-2 px-4"> 
               Login
             </Button>
             <Link
@@ -124,4 +122,4 @@ export const Login = () => {
       </Formik>
     </Container>
   );
-};
+}

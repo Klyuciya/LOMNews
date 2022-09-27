@@ -13,7 +13,7 @@ export const Home = () => {
  
 
   const formEntries = Array.from(popularsNews.entries());
-  console.log("formEntries " , formEntries);
+  // console.log("formEntries " , formEntries);
   
   
   useEffect(() => {

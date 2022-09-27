@@ -40,14 +40,14 @@ export const NewsRead = () => {
         dispatch(deleteMyNews(news._id))
         toast('Successfully deleted news')
         navigate('/news/user/my')
-        console.log(news._id)
+        // console.log(news._id)
     } catch (error) {
         console.log(error)
     }
 }
 
 
-  console.log(location)
+  // console.log(location)
   useEffect (() => {
     const getNews = async () => {
       const res = await axios.get("/news/" + path)
@@ -56,8 +56,8 @@ export const NewsRead = () => {
     getNews()
   },[path])
 
- console.log(comments)
- console.log( comments.commentText)
+//  console.log(comments)
+//  console.log( comments.commentText)
 
  
   

@@ -6,7 +6,7 @@ import Moment from 'react-moment'
 
 export const PopularsNews = ({ news }) => {
     return (
-        <Link to={`news/${news._id}`} style={{textDecoration: 'none'}}> 
+        <Link to={`/`+`news/${news._id}`} style={{textDecoration: 'none'}}> 
         <div className='d-flex flex-row pop_news'>
             
             <div className='col-4'> {news.image && (

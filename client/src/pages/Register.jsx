@@ -21,10 +21,10 @@ export const Register = () => {
 
   const data = useSelector((state) => state.auth);
   const user = {data};
-  console.log(`user object: `, user);
+  // console.log(`user object: `, user);
 
 
-  console.log("status regist: " + status);
+  // console.log("status regist: " + status);
   const isAuth = useSelector(checkIsAuth);
   //console.log("isAuth regist: " + isAuth);
   const dispatch = useDispatch();
@@ -32,13 +32,13 @@ export const Register = () => {
 
   useEffect(() => {
     if (status) {
-      console.log("register.jsx if (status): " + status);
+      // console.log("register.jsx if (status): " + status);
       toast(status);
     }
     if (isAuth) navigate("/"); //if logged in then homepage
   }, [status, isAuth, navigate]);
 
-  console.log("status regist2: " + status);
+  // console.log("status regist2: " + status);
 
   // const validationSchema = Yup.object().shape({
   //   username: Yup.string().min(3).max(15).required(),

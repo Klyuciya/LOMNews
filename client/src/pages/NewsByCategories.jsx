@@ -1,31 +1,34 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { EditItem } from '../components/EditItem'
+import { NewsItem } from '../components/NewsItem'
 import axios from '../utils/axios'
-import { AiTwotoneEdit,
-    AiFillDelete, } from 'react-icons/ai'
+import { useParams } from 'react-router-dom'
+
 
 export const NewsByCategories = () => {
-    const [news, setMyNews] = useState([])
 
-    const fetchMyNews = async () => {
+    const params = useParams()
+
+    const [news, setCategoryNews] = useState([])
+
+    const fetchCategoryNews = async () => {
         try {
-            const { data } = await axios.get('/news/user/my')
-            setMyNews(data)
+            const { data } = await axios.get(`/news/category/${params.id}`)
+            setCategoryNews(data)
         } catch (error) {
             console.log(error)
         }
     }
 
     useEffect(() => {
-        fetchMyNews()
+        fetchCategoryNews()
     }, [])
 
     return (
         <div className='w-1/2 mx-auto py-10 flex flex-col gap-10'>
             {news?.map((news, idx) => (
-                <EditItem news={news} key={idx} />             
+                <NewsItem news={news} key={idx} />             
          
             ))}
         </div>
