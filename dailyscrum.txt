@@ -331,6 +331,21 @@ Each member writes down answers to 3 questions in the following format:
     learn about deploying the project on heroku
 3.Need assistance / figure things out
    Need with protected routes, roles, S3 bucket and heroku
+   
+   2022/09/25 Liutsiia
+===================
+1.Done / not done since last scrum:
+	worked on the styling (css, Bootstrsp)
+	worked on navbar (current date,time; search, logo)
+     	created categorynav(auto show from DB)
+2. To do until next Scrum:
+	-continue with styling
+	-access for Editor
+	-popular news
+ 	-acces to add comment
+	-change navbar with rol
+3.Need assistance / figure things out
+     -deploying the project on heroku
 
 
     2022/09/26 Myrzagul
@@ -344,3 +359,30 @@ Each member writes down answers to 3 questions in the following format:
    Need with protected routes, roles, S3 bucket and heroku
 
 
+
+
+2022/09/26 Oxana
+===================
+1.Done / not done since last scrum:
+-get all users ( backend )
+	-admin panel get all users (frontend)
+     -forms validation login/signup
+2. To do until next Scrum:
+	-admin panel edit state and role of the user
+	-continue with bootstrap css
+	-adding content for website/presentation
+3.Need assistance / figure things out
+     
+ 2022/09/26 Liutsiia
+===================
+1.Done / not done since last scrum:
+  	- Finish with styling
+	- access with role
+	- deploying the project on server (Heroku/Vercel)
+        - prepare for the presentation
+2. To do until next Scrum:
+	- testing all
+	- add content
+	- tried fixing the bugs
+3.Need assistance / figure things out
+	- prepered for presentation
