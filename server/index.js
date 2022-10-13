@@ -44,10 +44,10 @@ app.get("/", (req, res) => {
 
 async function start() {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(
       // `mongodb+srv://${dbUser}:${dbPassword}@cluster0.5rhohrz.mongodb.net/${dbName}?retryWrites=true&w=majority`
-      // 'mongodb+srv://Myrzagul:MA1234@cluster0.5rhohrz.mongodb.net/lomnews?retryWrites=true&w=majority'
-    // );
+      'mongodb+srv://Myrzagul:MA1234@cluster0.5rhohrz.mongodb.net/lomnews?retryWrites=true&w=majority'
+    );
 
     app.listen(process.env.PORT || port, () => {
       console.log(`Server started on port: ${port}`);

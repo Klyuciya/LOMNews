@@ -10,7 +10,7 @@ export const createComment = async (req, res) => {
     try {
         const {commentText, id} = req.body        
         const user = await User.findById(req.userId);
-        console.log(commentText)
+        // console.log(commentText)
 
             const newComment = new Comment({ 
                 commentText: commentText ,
@@ -19,10 +19,10 @@ export const createComment = async (req, res) => {
                 news:req.params.id
             })
 
-            console.log(newComment)
+            // console.log(newComment)
             await newComment.save()
 
-            console.log(newComment)
+            // console.log(newComment)
                 await News.findByIdAndUpdate(req.params.id, {
                     $push: { comments: newComment._id },
                 })

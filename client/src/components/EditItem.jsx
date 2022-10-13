@@ -39,15 +39,15 @@ export const EditItem = ({ news }) => {
 
 
     return (
-        <Link  to={`news/${news._id}`} style={{textDecoration: 'none'}}>
+        <Link  to={`/`+`news/${news._id}`} style={{textDecoration: 'none'}}>
             <div className='flex flex-col basis-1/4 flex-grow mb-5 m-5 news_container p-3'>
                 <div
                     className={
-                        news.image? 'flex rouded-sm h-80' : 'm-3'
+                        news.image? 'img-thumbnail' : 'img-thumbnail'
                     }
                 >
                     {news.image && (
-                        <img
+                        <img className='img-thumbnail'
                             src={`http://localhost:3002/${news.image}`}
                             alt='img'
                         />
@@ -61,8 +61,8 @@ export const EditItem = ({ news }) => {
                 </div>
                 
                 <p className=' text-body fs-5'>
-                    {/* {(news.newsText).substr(0,300)}... */}
-                    {news.newsText}
+                    {(news.newsText).substr(0,300)}...
+                    {/* {news.newsText} */}
                 </p>
 
                 <div className='flex gap-3 items-center pb-5'>
